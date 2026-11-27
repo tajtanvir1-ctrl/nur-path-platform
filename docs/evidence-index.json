@@ -406,6 +406,51 @@
       "ci_candidate_commit": "7648ab5927f9f5e1426e47f55397936f71809428",
       "ci_result": "NOT_VERIFIED",
       "limits": "Only two operational endpoints; domain architecture, DB/auth/mobile connection and product features not verified."
+    },
+    {
+      "id": "NP-EV-ARCH001-ACCEPTANCE-002",
+      "task": "NP-ARCH-001",
+      "source_commit": "7648ab5927f9f5e1426e47f55397936f71809428",
+      "run_id": 46022951253,
+      "backend": "PASS",
+      "flutter": "PASS",
+      "openapi": "PASS",
+      "unittest": 23,
+      "pytest": 6,
+      "acceptance": "docs/NP-ARCH-001_ACCEPTANCE.md",
+      "transition_commit": "95a9c9183ddb31efd02030ed70ff6c85e38f4f92",
+      "limits": "Scoped architecture and operational endpoints only; consumer integration and independent gate remain pending."
+    },
+    {
+      "id": "NP-EV-DB001-MIGRATION-001",
+      "task": "NP-DB-001",
+      "source_commit": "f8dd523f76b4d412c6e1d42779633fc0c9ef0b39",
+      "local": {
+        "migration_tests": {
+          "passed": 3,
+          "skipped": 1
+        },
+        "backend_regression": {
+          "passed": 6
+        },
+        "openapi": "PASS"
+      },
+      "remote_blob_matches": {
+        "backend/alembic.ini": "8d81203804198a7343ecdce0342d24a74db78af8",
+        "backend/migrations/env.py": "5644b76419b3003abfe029a980c0a2f8ad43240a",
+        "backend/migrations/versions/0001_identity_foundation.py": "2870de7feb5901d92e75184a22a18490be1197bc",
+        "backend/db_tests/test_migration.py": "34c53dadeb13f44fc2b99e54fafb892885bface5",
+        "backend/requirements-db-linux-py313.lock": "9df005ca49a246f3dbe2f9a810b52e4447c398b0"
+      },
+      "ci_candidate": "46d58f5b08d0e1c885dbfab61f26fab75e978109",
+      "run_id": 46024093866,
+      "status": "PENDING_AT_OBSERVATION",
+      "neon_readback": {
+        "branch": "nur-path-dev",
+        "postgres": "18.7",
+        "application_schema_exists": false
+      },
+      "limits": "Offline DDL and guard tests only locally; no real PostgreSQL migration, application driver TLS, RBAC, or full ownership RLS test verified. CI loopback/identity guard is not cryptographic proof of disposable ownership; use dedicated service only. No cloud schema write, downgrade or credentials."
     }
   ]
 }
