@@ -20,3 +20,6 @@
 - NP-ADR-011: Pin Flutter 3.44.0 (559ffa3f75e7402d65a8def9c28389a9b2e6fe42) for existing Material API compatibility rather than suppress analyzer deprecations or introduce an unreviewed package. SDK warmed before machine version check. Generate Android/iOS scaffold in disposable CI stage; provisional namespace com.solvegrid is development-only. Review artifact before integrating. Do not cancel active verification merely to publish continuity documents.
 
 - NP-ADR-012: Native staging reproduces the original package analyzer configuration rather than inheriting unrelated generated template lints. Check lock equality before artifact publication. No suppressed analyzer diagnostics, new dependencies or production identifiers.
+
+- NP-ADR-013: Accept scoped CORE-002 using the verified pinned SDK native regeneration path and exact lockfile. Native source integration and compilation remain later requirements; debug signing and provisional identifiers are not release-ready.
+- NP-ADR-014: FastAPI runtime OpenAPI snapshot is checked in CI and explicit regeneration requires --write; no silent contract drift. Integration registry distinguishes tested endpoints from planned app/database connectivity.
