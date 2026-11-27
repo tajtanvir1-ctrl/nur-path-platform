@@ -25,3 +25,5 @@
 - NP-ADR-014: FastAPI runtime OpenAPI snapshot is checked in CI and explicit regeneration requires --write; no silent contract drift. Integration registry distinguishes tested endpoints from planned app/database connectivity.
 
 - NP-ADR-015: Keep modular FastAPI monolith, provider-independent verified issuer/subject identity mapping, app-owned UUID and portable PostgreSQL migrations. Initial schema default-deny RLS; no app grants until verified auth/role policy. Use PostgreSQL 17 disposable CI for first migration, no cloud writes until actual review. PostgreSQL 18 Neon and future Supabase target compatibility require separate verification.
+
+- NP-ADR-016: External PostgreSQL runtime configuration accepts only dedicated nurpath_app role, separately configured target host/database, explicit port 5432 and exact verify-full/system CA parameters. Reject override parameters and redact errors. This preflight is not a TLS or authorization proof; verify actual driver and role privileges before connecting the app.
