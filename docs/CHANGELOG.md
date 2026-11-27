@@ -8,3 +8,6 @@ Expanded registry to 54 tasks, 24 features and six gates; added feature specific
 
 ## 2026-11-27 — V0.4
 Added dependency-ready planner, 8 tests, traceability for 24 features, proposed Year-1 acceptance and Founder authorization records. Regression: 16 unittest + 4 pytest pass; six Git source/test blobs matched. No app features promoted to verified.
+
+## 2026-11-27 — V0.5
+Added 20 governance baseline files and scoped acceptance. Exact remote registry bytes validated locally; NP-CORE-001 VERIFIED and NP-CORE-002 started. Added environment preflight, observed 21-package pin inventory, seven new unit tests, Flutter smoke shell and two unrun widget tests, and foundation CI workflow. 23 unittest + 4 pytest passed; loopback Uvicorn HTTP 200/503 verified. Source hashes match remote. Draft PR #1 open; CI not verified. No product feature completion or deployment.
