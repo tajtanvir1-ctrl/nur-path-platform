@@ -355,6 +355,57 @@
         "Application database driver/TLS integration"
       ],
       "limits": "Inspect actual staged test results and artifact; no platform source integrated yet; no feature or task promoted."
+    },
+    {
+      "id": "NP-EV-CORE002-ACCEPTANCE-005",
+      "task": "NP-CORE-002",
+      "run_id": 46022258378,
+      "source_commit": "a557dbb6503374a00336c1e45778c6795155ab09",
+      "backend": "PASS",
+      "flutter": "PASS",
+      "native_staging_analyze_test_lock_comparison": "PASS",
+      "artifact": {
+        "id": 15207879770,
+        "size": 101017,
+        "sha256": "06bc391606719cbff40ea075280642102295af867a0f605c10a743bfd09c59cd",
+        "download_digest_match": true,
+        "crc_pass": true,
+        "unique_safe_file_count": 65,
+        "symlinks": 0,
+        "identified_secret_path_count": 0
+      },
+      "lock": {
+        "commit": "da103155441fb52b74f10e99a5d789709317861b",
+        "blob": "d0e76ea496fb0efb9d4f07206350c18338850663",
+        "packages": 26,
+        "hosted_hashes": 22
+      },
+      "acceptance": "docs/NP-CORE-002_ACCEPTANCE.md",
+      "transition_commit": "45ddb0d32b8c2a41ccca23ee456d05a0d6cdbcfc",
+      "limits": "Reproducible generation path accepted instead of committing platform trees; no native compilation, release signing, app DB integration or independent review."
+    },
+    {
+      "id": "NP-EV-ARCH001-CONTRACT-001",
+      "task": "NP-ARCH-001",
+      "baseline": "45ddb0d32b8c2a41ccca23ee456d05a0d6cdbcfc",
+      "source_commit": "9fc0e70bb252a51fb564f23a6634502cfe77ea67",
+      "red": "1 failed, 1 passed before snapshot existed",
+      "green": "6 backend pytest passed after snapshot export",
+      "commands": [
+        "python scripts/export_openapi.py --write",
+        "python scripts/export_openapi.py",
+        "cd backend && PYTHONPATH=. python -m pytest -q -p no:cacheprovider tests"
+      ],
+      "verified_git_blobs": {
+        "backend/app/main.py": "e9455f57435a194dbf69cdf06194e87f7f67e4bf",
+        "backend/tests/test_health.py": "b1629648b8eec6aea409683366f5393e9cb25c11",
+        "scripts/export_openapi.py": "a448cc649baf9718d265a19ba4b7dde1ad896ffa",
+        "backend/tests/test_contract_snapshot.py": "77ee9c748ef7f2d86037fb159709a3b624626aea",
+        "packages/api-contracts/openapi.json": "f5989a708f4c8842bd32d48f62e61e35ac7c05bc"
+      },
+      "ci_candidate_commit": "7648ab5927f9f5e1426e47f55397936f71809428",
+      "ci_result": "NOT_VERIFIED",
+      "limits": "Only two operational endpoints; domain architecture, DB/auth/mobile connection and product features not verified."
     }
   ]
 }
