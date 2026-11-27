@@ -20,3 +20,6 @@ Run 15 failed on startup JSON parsing; Run 17 reached dependency resolution and 
 
 ## V0.8 — Native staging consistency
 Verified Run 19 source analyzer and both Flutter widget tests passed. Generated 75 scaffold files, but staging analyzer failed on an include absent in the source package. Corrected stage analyzer configuration and added lock equality check. Run 25 backend PASS; Flutter and artifact pending at observation.
+
+## V0.9 — Environment acceptance and architecture start
+Run 25 both jobs PASS; reviewed native scaffold artifact digest and lock, committed exact lock and marked CORE-002 scoped VERIFIED. Started ARCH-001 with versioned OpenAPI/exporter and two tests, local backend 6/6 pass, API contract and integration registry, CI drift check. No native binary or app database integration.
