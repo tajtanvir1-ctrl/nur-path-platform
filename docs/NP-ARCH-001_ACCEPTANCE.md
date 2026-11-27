@@ -1,0 +1,13 @@
+# NP-ARCH-001 scoped architecture acceptance
+
+Review baseline 2596c36bafa260f7262f914a84ae4ff89b037417; implementation-side review, not independent CTO approval.
+
+Run 44 (46022951253) completed both jobs successfully; backend clean install, 21 pins, OpenAPI runtime equality, 23 unittest and 6 pytest cases passed. Flutter package and native staging also passed. Contract artifact packages/api-contracts/openapi.json is authoritative for the two current operational endpoints. Backend owns contract changes; mobile/portal consumers review changes at their integration tasks. Consumer-generated clients and connected flows not yet implemented. Future API changes must be contract-first, with compatibility review, negative responses and consumer tests.
+
+Service boundaries: modular FastAPI monolith rather than distributed services until measured scaling need. HTTP routers validate typed inputs, services enforce domain rules and authorization, repositories receive explicit transaction and verified principal context, PostgreSQL stores canonical data. No client direct SQL or owner credential. Identity adapter maps verified issuer/subject to app-owned UUID; never trust client-supplied user ID. Separate private object store adapter, signed access only after authorization; AI gateway is provider-neutral and disabled until review; worker/outbox introduced only with durable job need. Mobile owns local pending state and uses bounded idempotent sync operations. Admin and scholar portals consume the same API with distinct permissions, no elevated credentials in browser.
+
+Neon development only; future Supabase production compatibility via portable SQLAlchemy/Alembic migrations, explicit provider identity mapping and storage migration rehearsal. Use PostgreSQL 17-compatible SQL in CI, Neon 18.7 separately verified; eventual Supabase target version still must be checked. Initial DB scope is identity foundation with default-deny RLS and no provider-specific schema dependency. Role grants and verified session context require AUTH-001. No production schema or real identity activation. Database online migration first limited to disposable loopback CI; no downgrade/delete on live resources.
+
+Alternatives: microservices add deployment/consistency burden; direct provider SDK couples authorization and migration; Firestore requires rewriting relational model. Selected modular server-owned boundary preserves portability at cost of explicit integration code.
+
+Result: scoped architecture decisions and current HTTP contract verification accepted; NP-ARCH-001 VERIFIED only for this scope. DB-001 next. No feature-level integration, generated mobile API client, independent security review or production acceptance implied.
