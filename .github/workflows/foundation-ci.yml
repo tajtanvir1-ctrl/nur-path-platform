@@ -1,0 +1,60 @@
+name: Foundation verification
+on:
+  push:
+    branches: ['feat/NP-CORE-001-foundation']
+    paths: ['backend/**', 'apps/mobile/**', 'scripts/**', 'tests/**', 'docs/*-registry.json', 'docs/quality-gates.json', '.github/workflows/foundation-ci.yml']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: foundation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13.5'
+      - name: Fresh isolated environment
+        run: |
+          python -m venv .venv
+          .venv/bin/python -m pip install --only-binary=:all: --no-deps -r backend/requirements-linux-py313.lock
+          .venv/bin/python -m pip check
+          .venv/bin/python scripts/check_environment.py
+      - name: Validate and test
+        run: |
+          .venv/bin/python scripts/validate_governance.py
+          .venv/bin/python scripts/next_task.py
+          .venv/bin/python -m unittest discover -s tests -v
+          (cd backend && PYTHONPATH=. ../.venv/bin/python -m pytest -q -p no:cacheprovider tests)
+  flutter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: flutter/flutter
+          ref: ab2912035e160d9cad6306df307576da6128ebdb
+          path: .toolchain/flutter
+          persist-credentials: false
+      - name: Check official Flutter SDK revision
+        run: |
+          test "$(git -C .toolchain/flutter rev-parse HEAD)" = ab2912035e160d9cad6306df307576da6128ebdb
+          .toolchain/flutter/bin/flutter --version
+          echo "$GITHUB_WORKSPACE/.toolchain/flutter/bin" >> "$GITHUB_PATH"
+      - name: Resolve, analyze and test
+        working-directory: apps/mobile
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter test
