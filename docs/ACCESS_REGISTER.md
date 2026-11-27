@@ -1,0 +1,3 @@
+# Access register — no secrets
+
+GitHub development connector: authorized by Founder for canonical repository and development branch; main merge not approved. Local disposable Python workspace: synthetic tests only. Flutter/Dart, PostgreSQL runner, signing and CI execution: not verified. FreeLLMAPI: approved for controlled evaluation only; no provider key or live traffic verified. Production storage, payments, model providers, scholar consoles, Apple/Google signing: not provisioned or approved here. Legacy Antigravity credentials: status unknown; do not execute bridge, review separately. Record least-privilege role, purpose, owner, revocation and verification before new access. Never include token values.
