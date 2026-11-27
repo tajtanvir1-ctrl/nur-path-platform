@@ -8,3 +8,5 @@
 
 - NP-ADR-006: Expand all six launch groups and Year-1 tasks in a single acyclic dependency registry; use automated negative tests for registry integrity. Year-1 implementation requires separate phase decision.
 - NP-ADR-007: Founder authorizes phase-wise routine development without repetitive approvals. Hourly scheduled execution is enabled; no assurance of future connector/runtime success. No production release or self-approval.
+
+- NP-ADR-006: Sequential continuation is the default; scheduled attempts are a fallback, not uninterrupted compute. No arbitrary approval pauses. Planner identifies candidates, not authentic approvals. Year-1 remains separately gated.
