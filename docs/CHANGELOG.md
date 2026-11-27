@@ -23,3 +23,6 @@ Verified Run 19 source analyzer and both Flutter widget tests passed. Generated 
 
 ## V0.9 — Environment acceptance and architecture start
 Run 25 both jobs PASS; reviewed native scaffold artifact digest and lock, committed exact lock and marked CORE-002 scoped VERIFIED. Started ARCH-001 with versioned OpenAPI/exporter and two tests, local backend 6/6 pass, API contract and integration registry, CI drift check. No native binary or app database integration.
+
+## V0.10 — Architecture acceptance and database foundation
+Run 44 both jobs PASS. Scoped ARCH-001 accepted; DB-001 started. Initial guarded Alembic migration, identity/preference schema, data dictionary, offline SQL/guard tests and disposable PostgreSQL CI added. Local 3 migration tests PASS, 1 skipped; 6 existing backend tests PASS. Run 64 pending. Neon schema absent on readback; no cloud mutation.
