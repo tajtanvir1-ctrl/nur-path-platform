@@ -11,3 +11,5 @@ V0.5: scoped CORE-001 verified; CORE-002 in progress. Read docs/DEVELOPMENT_ENVI
 V0.6: Founder resumed development and approved Neon Free. Read DEVELOPMENT_DATABASE.md; target isolated nur-path-dev child branch only. Actual connector SQL passes, app-driver TLS/auth/schema not verified. CI run 9 pending outcome; do not treat config as passing CI. Next complete CORE-002.
 
 V0.7: Read evidence NP-EV-CORE002-FLUTTER-003. Latest tested backend Run 17 PASS; Flutter 3.50 analyzer incompatible with current imports, not application feature failure. Run 19 pinned 3.44.0; inspect actual outcome and scaffold artifact. Scheduled Nur Path Development enabled confirmed; next run observed 2026-11-27 21:21:33 +06:00, no completed automation run yet. Do not infer continuous compute.
+
+V0.8: Run 19 source Flutter analyzer and two widgets passed; staged native generation 75 files, staging include-file mismatch repaired in a557dbb6503374a00336c1e45778c6795155ab09. Run 25 backend PASS; Flutter/artifact pending. Inspect exact results before integrating native source/lock or completing CORE-002.
