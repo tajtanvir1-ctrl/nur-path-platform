@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "tasks": [
+    {
+      "id": "NP-CORE-001",
+      "status": "IN_PROGRESS",
+      "scope": "governance, source provenance, complete registries, acceptance criteria",
+      "depends_on": []
+    },
+    {
+      "id": "NP-CORE-002",
+      "status": "BACKLOG",
+      "depends_on": [
+        "NP-CORE-001"
+      ],
+      "scope": "monorepo and reproducible environment"
+    },
+    {
+      "id": "NP-ARCH-001",
+      "status": "BACKLOG",
+      "depends_on": [
+        "NP-CORE-002"
+      ],
+      "scope": "architecture decisions and API contracts"
+    },
+    {
+      "id": "NP-DB-001",
+      "status": "BACKLOG",
+      "depends_on": [
+        "NP-ARCH-001"
+      ],
+      "scope": "database migrations and integration tests"
+    },
+    {
+      "id": "NP-UI-001",
+      "status": "BACKLOG",
+      "depends_on": [
+        "NP-ARCH-001"
+      ],
+      "scope": "Flutter design system and navigation"
+    },
+    {
+      "id": "NP-AUTH-001",
+      "status": "BACKLOG",
+      "depends_on": [
+        "NP-DB-001",
+        "NP-ARCH-001"
+      ],
+      "scope": "authentication and authorization"
+    },
+    {
+      "id": "NP-CI-001",
+      "status": "BACKLOG",
+      "depends_on": [
+        "NP-CORE-002",
+        "NP-UI-001",
+        "NP-AUTH-001"
+      ],
+      "scope": "CI and executable verification"
+    },
+    {
+      "id": "CTO-GATE-01",
+      "status": "BLOCKED",
+      "depends_on": [
+        "NP-CORE-001",
+        "NP-CI-001"
+      ],
+      "scope": "foundation review; no self approval"
+    },
+    {
+      "id": "NP-DATA-001",
+      "status": "BACKLOG",
+      "depends_on": [
+        "CTO-GATE-01"
+      ],
+      "scope": "verified Quran and Hadith ingestion"
+    }
+  ]
+}
