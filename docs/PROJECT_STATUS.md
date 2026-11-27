@@ -1,0 +1,3 @@
+# Project status — checkpoint V0.4
+
+NP-CORE-001 IN_PROGRESS. Source baseline ff1c9080c312f560dc130633088ab7ccd4e4b889. Product feature progress 0/16 verified V1, all 24 registered. Foundation: backend health spike, registry validation and dependency-ready planner. Current local run: 16 governance/planner unittest cases and 4 backend pytest cases passed. Six tested source/test blobs compared with remote. Planner only provides candidates; human review validates approval authenticity. No full runtime, native Flutter, PostgreSQL, CI, live providers or independent review. Remaining: finish canonical governance, detailed acceptance, architecture and environment. Do not claim launch-ready. Main is not changed by this increment.
