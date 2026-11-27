@@ -13,3 +13,6 @@
 
 - NP-ADR-007: Core governance is verified only within its scoped acceptance. Domain documentation matures at mapped gates; no waiver of release criteria. CLAUDE.md retired, AGENTS.md canonical.
 - NP-ADR-008: Observed Linux/Python 3.13 dependency closure and official Flutter 3.50.0 commit ab2912035e160d9cad6306df307576da6128ebdb selected for candidate CI verification, not yet validated as clean environment. CI uses read-only permissions and pinned official actions. Draft PR #1 is verification only, no merge.
+
+- NP-ADR-009: Neon Free PostgreSQL for isolated development, Supabase Pro remains intended production target. Retain portable PostgreSQL migrations, provider-neutral auth/storage, least-privilege roles and verified TLS. No Firestore rewrite. See DEVELOPMENT_DATABASE.md.
+- NP-ADR-010: CI remediation pins Ubuntu 24.04 for Python 3.13.5 and uses Flutter 3.50.0 tagged checkout with exact SHA and version assertion. Actual runner result required.
