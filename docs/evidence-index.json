@@ -474,6 +474,86 @@
       },
       "scope": "Pure SQLAlchemy URL validation: dedicated role, independently configured host/database, explicit port, verify-full + system CA, exact query allowlist, generic error. No network connection.",
       "limitations": "Actual driver support for sslrootcert=system, live TLS, least-privilege role grants and DB migration remain NOT_RUN. Guard not wired into app yet. CI run 64 cancelled, run 69/70 pending at earlier observation; inspect latest source-compatible run."
+    },
+    {
+      "id": "NP-EV-DB001-NEON-MIGRATION-003",
+      "task": "NP-DB-001",
+      "baseline": "c7661cf570164773f5c15020bdd1c86d3c6d2b8f",
+      "ci": {
+        "run_id": 46024703153,
+        "all_jobs": "PASS",
+        "postgres_version": "17.12",
+        "db_tests": {
+          "passed": 22,
+          "skipped": 0
+        },
+        "unittest": 23,
+        "backend_pytest": 6,
+        "flutter_widgets": 2,
+        "native_staging_widgets": 2,
+        "openapi": "PASS"
+      },
+      "neon": {
+        "branch": "nur-path-dev",
+        "postgres": "18.7",
+        "revision": "0001_identity_foundation",
+        "method": "Exact reviewed Alembic offline SQL applied via guarded connector transaction, 18 statements including precondition",
+        "tables": [
+          "principals",
+          "external_identities",
+          "preferences"
+        ],
+        "rls_enabled_and_forced": 3,
+        "public_table_access_revoked": 3,
+        "policies": 0,
+        "all_constraints_validated": true,
+        "parent_schema_absent": true,
+        "parent_role_absent": true,
+        "parent_auth_tables": 9,
+        "role": {
+          "name": "nurpath_app",
+          "access": "read_only",
+          "superuser": false,
+          "bypassrls": false,
+          "createrole": false,
+          "createdb": false,
+          "replication": false,
+          "neon_admin": false,
+          "auth_schema_usage": false,
+          "accessible_auth_tables": 0,
+          "app_schema_create": false,
+          "select_tables": 3,
+          "write_tables": 0,
+          "actual_role_connection": "PASS",
+          "auth_read_denied_sqlstate": "42501",
+          "insert_permission_denied_sqlstate": "42501",
+          "client_tls": "NOT_VERIFIED",
+          "connector_server_ssl_flag": false
+        }
+      },
+      "limitations": "No synthetic records inserted in Neon; actual default-deny RLS behavior tested in CI, catalog readback on Neon. No live user/auth activation. Read-only role provisioned, credential response filtered; no password/URL published."
+    },
+    {
+      "id": "NP-EV-DB001-TLS-PROBE-004",
+      "task": "NP-DB-001",
+      "source_commit": "86f563e8bf5bf97f9734ef2dc26943521b3773e9",
+      "source_blobs": {
+        "backend/app/database_probe.py": "17f604258d29fc5b239696541f6bb4976007b6fd",
+        "backend/db_tests/test_database_probe.py": "15d24eb5f16a4692c8c9f464be22b3c72fa3f182",
+        "scripts/check_runtime_database.py": "c67493d8521f7e235b61e129c18a941392ee1a12"
+      },
+      "local": {
+        "mocked_probe_tests": 9,
+        "backend_tests": 6,
+        "openapi": "PASS"
+      },
+      "live_role_scope_query": "PASS on Neon using scoped role",
+      "external_tls": "BLOCKED: current execution environment DNS lookup returned temporary failure in name resolution; no external TLS handshake",
+      "ci_candidate": {
+        "run_id": 46025780937,
+        "status_at_observation": "pending"
+      },
+      "limitations": "No actual app-driver TLS yet, no readiness change. Require trusted network-enabled runner and private secret injection; no owner credentials, no repo-level secrets while legacy workflow finding is open. Pending-first instruction: do not begin next task until current verification blockers are resolved or founder explicitly changes priority."
     }
   ]
 }
