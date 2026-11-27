@@ -75,6 +75,36 @@
         "all_dependencies_resolve": true
       },
       "limitations": "Python CLI against actual remote JSON not run; unit tests used synthetic fixtures. No product feature, native build, CI, DB, or live AI verification."
+    },
+    {
+      "id": "NP-EV-CORE001-PLANNER-003",
+      "task": "NP-CORE-001",
+      "scope": "dependency-ready planner and regression of existing local tests",
+      "tested_source_commit": "ff1c9080c312f560dc130633088ab7ccd4e4b889",
+      "commands": [
+        {
+          "command": "python -m unittest discover -s tests -v",
+          "exit": 0,
+          "passed": 16,
+          "failed": 0
+        },
+        {
+          "command": "cd backend && PYTHONPATH=. python -m pytest -q -p no:cacheprovider tests/test_health.py",
+          "exit": 0,
+          "passed": 4,
+          "failed": 0
+        }
+      ],
+      "new_cases": 8,
+      "remote_blob_matches": {
+        "scripts/next_task.py": "30ab6d79036bb5d7de1100ee7007324c3f77b505",
+        "tests/test_next_task.py": "debcd9e91f412ddad9f9a720bf6389ae3238012d",
+        "scripts/validate_governance.py": "8db3cc436500b0420a3f908c17e9bd1619d5c7b7",
+        "tests/test_governance.py": "3778b5a53e5c77b254fc2ed31e755e7896aff7e0",
+        "backend/app/main.py": "e9455f57435a194dbf69cdf06194e87f7f67e4bf",
+        "backend/tests/test_health.py": "b1629648b8eec6aea409683366f5393e9cb25c11"
+      },
+      "limitations": "Planner fixture tests; CLI against actual remote registries not run. Approval reference presence does not authenticate approval. No native, real database, CI, or live AI tests."
     }
   ]
 }
