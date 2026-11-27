@@ -1,0 +1,3 @@
+# Security policy
+
+Nur Path is under development; no supported production release. Report vulnerabilities privately to the Founder through an authorized private channel; do not post secrets, exploit payloads, user recordings or private data in public GitHub issues. Include affected commit, minimal redacted reproduction, impact and proposed remediation. Critical/high findings block the affected release. Rotate compromised credentials through an authorized operator, preserve redacted incident evidence, and rerun negative access tests. See docs/SECURITY_PRIVACY_POLICY.md and docs/SECURITY_FINDINGS.md. Legacy Antigravity bridge is not authorized to execute. No independent security certification exists.
