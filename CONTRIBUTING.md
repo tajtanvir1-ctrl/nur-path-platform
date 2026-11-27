@@ -1,0 +1,3 @@
+# Contributing to Nur Path
+
+Read AGENTS.md and the canonical handoff. Select dependency-ready tasks only; use a bounded branch, scope and acceptance evidence. Preserve source history and review the diff before writing. For behavior changes add failing regression tests, implement the smallest fix, rerun related tests and record exact commands, environments, results and source SHA. Never classify synthetic fixtures as religious content or mock database tests as PostgreSQL verification. Maintain feature/task registries, decisions, changelog and handoff. Obtain independent gate review at the reviewed SHA; no self-approval or main merge. No secrets, private audio, personal data or licensed assets without documented permission. See SECURITY.md for private reporting.
