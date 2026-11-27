@@ -1,0 +1,41 @@
+{
+  "version": "0.1",
+  "integrations": [
+    {
+      "id": "NP-INT-HEALTH-LIVE",
+      "status": "LOCALLY_VERIFIED",
+      "method": "GET",
+      "path": "/api/v1/health/live",
+      "expected_status": 200,
+      "operation_id": "live_api_v1_health_live_get",
+      "data_access": "none",
+      "tests": [
+        "backend/tests/test_health.py",
+        "backend/tests/test_contract_snapshot.py"
+      ]
+    },
+    {
+      "id": "NP-INT-HEALTH-READY",
+      "status": "LOCALLY_VERIFIED",
+      "method": "GET",
+      "path": "/api/v1/health/ready",
+      "expected_status": 503,
+      "operation_id": "ready_api_v1_health_ready_get",
+      "data_access": "none",
+      "tests": [
+        "backend/tests/test_health.py",
+        "backend/tests/test_contract_snapshot.py"
+      ]
+    },
+    {
+      "id": "NP-INT-DB",
+      "status": "PLANNED",
+      "note": "Neon connector SQL verified; app integration not run"
+    },
+    {
+      "id": "NP-INT-MOBILE",
+      "status": "PLANNED",
+      "note": "Independent Flutter widgets tested; no API connection"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "project": "Nur Path",
+  "features": [
+    {
+      "id": "NP-F01",
+      "name": "Local Imam/Alem Connect",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F02",
+      "name": "AI Tajweed correction",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F03",
+      "name": "Halal Lifestyle Hub",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F04",
+      "name": "Personalized Quran Journey",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F05",
+      "name": "Quran Reader",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F06",
+      "name": "Audio Tilawat",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F07",
+      "name": "Prayer Times and Qibla",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F08",
+      "name": "Azkar and Dua",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F09",
+      "name": "Quran-Hadith AI Chat",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F10",
+      "name": "Habit Tracker",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F11",
+      "name": "Daily Ayat and Widgets",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F12",
+      "name": "Quran Shorts",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F13",
+      "name": "Community and Moderation",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F14",
+      "name": "Offline Mode and Safe Sync",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F15",
+      "name": "Bangla English Arabic Urdu",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F16",
+      "name": "Freemium Monetization",
+      "phase": "V1",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F17",
+      "name": "Zakat Calculator",
+      "phase": "YEAR1_PHASE2",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F18",
+      "name": "Islamic Calendar",
+      "phase": "YEAR1_PHASE2",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F19",
+      "name": "Hifz Memorization",
+      "phase": "YEAR1_PHASE2",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F20",
+      "name": "Kids Mode",
+      "phase": "YEAR1_PHASE2",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F21",
+      "name": "Family Account",
+      "phase": "YEAR1_PHASE3",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F22",
+      "name": "Hajj and Umrah",
+      "phase": "YEAR1_PHASE3",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F23",
+      "name": "Live Taraweeh and Jummah",
+      "phase": "YEAR1_PHASE3",
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-F24",
+      "name": "Halal E-commerce",
+      "phase": "YEAR1_PHASE3",
+      "status": "BACKLOG"
+    }
+  ]
+}

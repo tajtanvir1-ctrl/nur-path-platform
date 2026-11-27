@@ -1,0 +1,559 @@
+{
+  "schema_version": 1,
+  "evidence": [
+    {
+      "id": "NP-EV-CORE001-HEALTH-001",
+      "task": "NP-CORE-001",
+      "scope": "backend feasibility spike",
+      "tested_source_commit": "e477688d89ffbf7869e2d7b28d6db189026ff538",
+      "environment": {
+        "python": "3.13.5",
+        "fastapi": "0.128.2",
+        "pydantic": "2.13.5",
+        "httpx": "0.28.1",
+        "pytest": "9.0.2",
+        "transport": "in-process ASGI TestClient"
+      },
+      "command": "cd backend && PYTHONPATH=. python -m pytest -q -p no:cacheprovider tests/test_health.py",
+      "red": {
+        "exit": 1,
+        "failed": 4
+      },
+      "green": {
+        "exit": 0,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "compileall": {
+        "command": "python -m compileall -q app tests",
+        "exit": 0
+      },
+      "remote_blob_matches": {
+        "backend/app/main.py": "e9455f57435a194dbf69cdf06194e87f7f67e4bf",
+        "backend/tests/test_health.py": "b1629648b8eec6aea409683366f5393e9cb25c11"
+      },
+      "not_run": [
+        "Flutter native builds",
+        "PostgreSQL integration",
+        "CI",
+        "dependency lock clean install",
+        "live AI",
+        "independent audit",
+        "lint",
+        "typecheck",
+        "coverage"
+      ],
+      "limitations": "No production readiness; 503 intentional; all product features backlog."
+    },
+    {
+      "id": "NP-EV-CORE001-GOV-002",
+      "task": "NP-CORE-001",
+      "scope": "governance validator and remote dependency graph",
+      "tested_source_commit": "9dbcc15a1349969f7d49337d9749690c94aacfb0",
+      "environment": {
+        "python": "3.13.5",
+        "framework": "unittest"
+      },
+      "command": "python -m unittest discover -s tests -p test_governance.py -v",
+      "result": {
+        "exit": 0,
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "remote_blob_matches": {
+        "scripts/validate_governance.py": "8db3cc436500b0420a3f908c17e9bd1619d5c7b7",
+        "tests/test_governance.py": "3778b5a53e5c77b254fc2ed31e755e7896aff7e0"
+      },
+      "remote_registry_check": {
+        "method": "JSON read and deterministic JavaScript graph checks",
+        "features": 24,
+        "tasks": 54,
+        "gates": 6,
+        "acyclic": true,
+        "all_dependencies_resolve": true
+      },
+      "limitations": "Python CLI against actual remote JSON not run; unit tests used synthetic fixtures. No product feature, native build, CI, DB, or live AI verification."
+    },
+    {
+      "id": "NP-EV-CORE001-PLANNER-003",
+      "task": "NP-CORE-001",
+      "scope": "dependency-ready planner and regression of existing local tests",
+      "tested_source_commit": "ff1c9080c312f560dc130633088ab7ccd4e4b889",
+      "commands": [
+        {
+          "command": "python -m unittest discover -s tests -v",
+          "exit": 0,
+          "passed": 16,
+          "failed": 0
+        },
+        {
+          "command": "cd backend && PYTHONPATH=. python -m pytest -q -p no:cacheprovider tests/test_health.py",
+          "exit": 0,
+          "passed": 4,
+          "failed": 0
+        }
+      ],
+      "new_cases": 8,
+      "remote_blob_matches": {
+        "scripts/next_task.py": "30ab6d79036bb5d7de1100ee7007324c3f77b505",
+        "tests/test_next_task.py": "debcd9e91f412ddad9f9a720bf6389ae3238012d",
+        "scripts/validate_governance.py": "8db3cc436500b0420a3f908c17e9bd1619d5c7b7",
+        "tests/test_governance.py": "3778b5a53e5c77b254fc2ed31e755e7896aff7e0",
+        "backend/app/main.py": "e9455f57435a194dbf69cdf06194e87f7f67e4bf",
+        "backend/tests/test_health.py": "b1629648b8eec6aea409683366f5393e9cb25c11"
+      },
+      "limitations": "Planner fixture tests; CLI against actual remote registries not run. Approval reference presence does not authenticate approval. No native, real database, CI, or live AI tests."
+    },
+    {
+      "id": "NP-EV-CORE001-ACCEPTANCE-004",
+      "task": "NP-CORE-001",
+      "scope": "scoped governance acceptance; no independent approval",
+      "source_commit": "c2cd4315e669e9736cb72a570fd6701284c32c34",
+      "commands": [
+        {
+          "command": "python scripts/validate_governance.py",
+          "exit": 0,
+          "result": {
+            "features": 24,
+            "tasks": 54,
+            "gates": 6
+          }
+        },
+        {
+          "command": "python scripts/next_task.py",
+          "exit": 0,
+          "result": [
+            "NP-CORE-001"
+          ]
+        }
+      ],
+      "exact_registry_blobs": {
+        "docs/feature-registry.json": "4eeeaff29a695a63295aef8909a73d9dd0c83298",
+        "docs/task-registry.json": "f2b9d018798f147fd8c739208c175187c5101f3e",
+        "docs/quality-gates.json": "ac8ca7aba459f949bf85e7dd9f91018a91044e07"
+      },
+      "new_policy_files_read_back": 20,
+      "transition_commit": "5ce1cf01a8b3b1ece03415443bab97717d96e6bb",
+      "post_transition_registry_blob": "78f7ff4df583ae94dd425f9d46bdfcc2a1760964",
+      "post_transition_next_task": [
+        "NP-CORE-002"
+      ],
+      "acceptance": "docs/NP-CORE-001_ACCEPTANCE.md",
+      "limitations": "Planning governance only; all V1 product features backlog; no external gate approval."
+    },
+    {
+      "id": "NP-EV-CORE002-ENV-001",
+      "task": "NP-CORE-002",
+      "scope": "environment preflight, regression and Flutter scaffold",
+      "tested_source_commit": "1ba937c504294ca5d09b1f56d57b5875f682b7bf",
+      "environment": "Linux Python 3.13.5, installed dependency closure",
+      "red": {
+        "command": "python -m unittest discover -s tests -p test_environment.py -v",
+        "exit": 1,
+        "result": "module not implemented; import error"
+      },
+      "commands": [
+        {
+          "command": "python scripts/check_environment.py",
+          "exit": 0,
+          "checked": 21,
+          "failures": []
+        },
+        {
+          "command": "python -m unittest discover -s tests -v",
+          "exit": 0,
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        },
+        {
+          "command": "cd backend && PYTHONPATH=. python -m pytest -q -p no:cacheprovider tests/test_health.py",
+          "exit": 0,
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        {
+          "command": "python -m compileall -q scripts tests backend/app backend/tests",
+          "exit": 0
+        }
+      ],
+      "loopback_http": {
+        "status": "PASS",
+        "server": "uvicorn",
+        "live": 200,
+        "ready": 503
+      },
+      "new_test_cases": 7,
+      "remote_blob_matches": {
+        "scripts/check_environment.py": "a1f69d3155d9e4fc7f4d278b335e0ad044c34807",
+        "tests/test_environment.py": "02a9d5158b2b32c579abcf4e91dc7eb8078e4dff",
+        "backend/requirements-linux-py313.lock": "62d76eec931e2f998a7fa74f7f4b152121b76ba8",
+        "apps/mobile/pubspec.yaml": "4e789d2c35e2b1f986c9afd3b422d667fdf6ef49",
+        "apps/mobile/lib/main.dart": "8dae8f83623f14ed66164b6e8fd4c9b52b9180ab",
+        "apps/mobile/test/app_test.dart": "5ab76dd97541679056614ef8328f629ca9dfac70"
+      },
+      "mobile_manifest_yaml": "PASS; not Flutter execution",
+      "ci_candidate_commit": "850dfc0fb126a403cf2b580f12a3e510e04657dd",
+      "draft_pr": "https://github.com/tajtanvir1-ctrl/nur-path-platform/pull/1",
+      "ci_results": "NOT_VERIFIED; connector returned no PR-triggered runs or status checks at inspection",
+      "not_run": [
+        "Clean install",
+        "Flutter analysis",
+        "Flutter widget tests (2 generated)",
+        "Android/iOS native builds",
+        "PostgreSQL integration",
+        "live AI",
+        "independent review"
+      ],
+      "limitations": "Observed lock without package hashes; local git DNS unavailable; source via connector."
+    },
+    {
+      "id": "NP-EV-CORE002-CI-NEON-002",
+      "task": "NP-CORE-002",
+      "scope": "audit, CI remediation and real Neon preflight",
+      "previous_baseline": "3e0c079ca40f5d29844481e085fa6591076a859c",
+      "failed_ci": {
+        "run_id": 45983775592,
+        "backend": "Python 3.13.5 unavailable on Ubuntu 26.04",
+        "flutter": "SDK 0.0.0-unknown; dependency resolution failed"
+      },
+      "fix_commit": "5724fe1bfb535a615fa1a022af3eded87eb13572",
+      "workflow_blob": "bda12415d2f342ad83dc27adc7baf9d78ee94081",
+      "verified_official_python_manifest": "3.13.5 linux x64 24.04 exists",
+      "verified_flutter_tag": "3.50.0 -> ab2912035e160d9cad6306df307576da6128ebdb",
+      "ci_retest": {
+        "run_id": 46017012039,
+        "source_commit": "5724fe1bfb535a615fa1a022af3eded87eb13572",
+        "overall": "cancelled",
+        "backend": {
+          "job_id": 140566606398,
+          "status": "PASS",
+          "clean_install": "PASS",
+          "pip_check": "PASS",
+          "dependency_versions": 21,
+          "unittest": 23,
+          "pytest": 4,
+          "validator": {
+            "features": 24,
+            "tasks": 54,
+            "gates": 6
+          },
+          "planner": [
+            "NP-CORE-002"
+          ]
+        },
+        "flutter": {
+          "job_id": 140566605870,
+          "status": "CANCELLED",
+          "tests": "NOT_RUN"
+        },
+        "subsequent_run": {
+          "run_id": 46017174935,
+          "status_at_observation": "in_progress"
+        }
+      },
+      "neon": {
+        "plan": "Free",
+        "branch": "nur-path-dev",
+        "parent": "main",
+        "status": "ready",
+        "database": "neondb",
+        "server_version": "18.7",
+        "select_1": "PASS",
+        "vector_available": true,
+        "pgcrypto_available": true,
+        "public_tables": 0,
+        "auth_users": 0,
+        "connector_session_ssl": false
+      },
+      "not_run": [
+        "FastAPI driver connectivity",
+        "External TLS hostname/certificate verification",
+        "Schema migration",
+        "RBAC/RLS tests",
+        "Auth flow",
+        "Native builds",
+        "Independent gate review"
+      ],
+      "limitations": "New branch provisioned; no application schema changes. Local test count from earlier evidence, not rerun in this increment."
+    },
+    {
+      "id": "NP-EV-CORE002-FLUTTER-003",
+      "task": "NP-CORE-002",
+      "scope": "CI failure triage and native scaffold generation candidate",
+      "baseline": "88368d101c887e3a0521a600f285d1c681025313",
+      "run15": {
+        "run_id": 46017294082,
+        "backend": "PASS",
+        "flutter": "FAIL",
+        "cause": "Flutter startup stdout contaminated JSON version output; JSONDecodeError"
+      },
+      "first_fix": {
+        "commit": "7393ce6219f75a417cf2a6e549120a36da9f8ec7",
+        "run_id": 46017754497,
+        "backend": {
+          "status": "PASS",
+          "dependency_pins": 21,
+          "unittest": 23,
+          "pytest": 4
+        },
+        "flutter": {
+          "sdk_version_check": "PASS",
+          "pub_get": "PASS",
+          "analyze": "FAIL: 3 deprecated_member_use informational diagnostics on Material imports and GlobalMaterialLocalizations",
+          "widget_tests": "NOT_RUN"
+        }
+      },
+      "second_fix": {
+        "commit": "0f655f695727a948af6ea8fa2039126f4b6a88e4",
+        "workflow_blob": "42e5caba22f991b3bda34eb113fc1b6a2e1ad611",
+        "sdk_tag": "3.44.0",
+        "sdk_sha": "559ffa3f75e7402d65a8def9c28389a9b2e6fe42",
+        "source_api_review": "Flutter material.dart and flutter_localizations exports retrieved at pinned SHA; no Material migration required by those source files",
+        "run_id": 46017959816,
+        "result": "IN_PROGRESS"
+      },
+      "scaffold": "Generated by CI only after analyzer and tests pass; disposable stage with provisional development namespace com.solvegrid; native sources and pubspec.lock artifact. No artifact or build verified yet.",
+      "limits": "No lint suppression. Stop further blind retries; inspect Run 19 before changing again. No DB schema, live AI, deployment, main merge or independent approval."
+    },
+    {
+      "id": "NP-EV-CORE002-NATIVE-004",
+      "task": "NP-CORE-002",
+      "scope": "Native scaffold staging repair, preserving tested app package",
+      "baseline": "252731420446175d512e6b9264a1e67496a7830d",
+      "run19": {
+        "run_id": 46017959816,
+        "backend": "PASS",
+        "flutter_sdk": "PASS",
+        "app_analyze": "PASS: No issues found",
+        "app_widget_tests": {
+          "passed": 2,
+          "failed": 0
+        },
+        "native_files_generated": 75,
+        "staged_analyze": "FAIL: template analysis_options.yaml includes absent flutter_lints dependency",
+        "artifact": "NOT_PUBLISHED"
+      },
+      "fix": {
+        "commit": "a557dbb6503374a00336c1e45778c6795155ab09",
+        "workflow_blob": "03a0ffd293d588b75a5caf83b0cf1f1a452407bd",
+        "change": "Mirror source app analyzer configuration in disposable stage; compare resolved pubspec.lock byte-for-byte; no severity suppression or new packages."
+      },
+      "retest": {
+        "run_id": 46022258378,
+        "backend": "PASS",
+        "flutter": "IN_PROGRESS",
+        "artifact": "NOT_AVAILABLE_AT_OBSERVATION"
+      },
+      "not_run": [
+        "Android APK build",
+        "iOS Xcode build",
+        "Native device tests",
+        "Application database driver/TLS integration"
+      ],
+      "limits": "Inspect actual staged test results and artifact; no platform source integrated yet; no feature or task promoted."
+    },
+    {
+      "id": "NP-EV-CORE002-ACCEPTANCE-005",
+      "task": "NP-CORE-002",
+      "run_id": 46022258378,
+      "source_commit": "a557dbb6503374a00336c1e45778c6795155ab09",
+      "backend": "PASS",
+      "flutter": "PASS",
+      "native_staging_analyze_test_lock_comparison": "PASS",
+      "artifact": {
+        "id": 15207879770,
+        "size": 101017,
+        "sha256": "06bc391606719cbff40ea075280642102295af867a0f605c10a743bfd09c59cd",
+        "download_digest_match": true,
+        "crc_pass": true,
+        "unique_safe_file_count": 65,
+        "symlinks": 0,
+        "identified_secret_path_count": 0
+      },
+      "lock": {
+        "commit": "da103155441fb52b74f10e99a5d789709317861b",
+        "blob": "d0e76ea496fb0efb9d4f07206350c18338850663",
+        "packages": 26,
+        "hosted_hashes": 22
+      },
+      "acceptance": "docs/NP-CORE-002_ACCEPTANCE.md",
+      "transition_commit": "45ddb0d32b8c2a41ccca23ee456d05a0d6cdbcfc",
+      "limits": "Reproducible generation path accepted instead of committing platform trees; no native compilation, release signing, app DB integration or independent review."
+    },
+    {
+      "id": "NP-EV-ARCH001-CONTRACT-001",
+      "task": "NP-ARCH-001",
+      "baseline": "45ddb0d32b8c2a41ccca23ee456d05a0d6cdbcfc",
+      "source_commit": "9fc0e70bb252a51fb564f23a6634502cfe77ea67",
+      "red": "1 failed, 1 passed before snapshot existed",
+      "green": "6 backend pytest passed after snapshot export",
+      "commands": [
+        "python scripts/export_openapi.py --write",
+        "python scripts/export_openapi.py",
+        "cd backend && PYTHONPATH=. python -m pytest -q -p no:cacheprovider tests"
+      ],
+      "verified_git_blobs": {
+        "backend/app/main.py": "e9455f57435a194dbf69cdf06194e87f7f67e4bf",
+        "backend/tests/test_health.py": "b1629648b8eec6aea409683366f5393e9cb25c11",
+        "scripts/export_openapi.py": "a448cc649baf9718d265a19ba4b7dde1ad896ffa",
+        "backend/tests/test_contract_snapshot.py": "77ee9c748ef7f2d86037fb159709a3b624626aea",
+        "packages/api-contracts/openapi.json": "f5989a708f4c8842bd32d48f62e61e35ac7c05bc"
+      },
+      "ci_candidate_commit": "7648ab5927f9f5e1426e47f55397936f71809428",
+      "ci_result": "NOT_VERIFIED",
+      "limits": "Only two operational endpoints; domain architecture, DB/auth/mobile connection and product features not verified."
+    },
+    {
+      "id": "NP-EV-ARCH001-ACCEPTANCE-002",
+      "task": "NP-ARCH-001",
+      "source_commit": "7648ab5927f9f5e1426e47f55397936f71809428",
+      "run_id": 46022951253,
+      "backend": "PASS",
+      "flutter": "PASS",
+      "openapi": "PASS",
+      "unittest": 23,
+      "pytest": 6,
+      "acceptance": "docs/NP-ARCH-001_ACCEPTANCE.md",
+      "transition_commit": "95a9c9183ddb31efd02030ed70ff6c85e38f4f92",
+      "limits": "Scoped architecture and operational endpoints only; consumer integration and independent gate remain pending."
+    },
+    {
+      "id": "NP-EV-DB001-MIGRATION-001",
+      "task": "NP-DB-001",
+      "source_commit": "f8dd523f76b4d412c6e1d42779633fc0c9ef0b39",
+      "local": {
+        "migration_tests": {
+          "passed": 3,
+          "skipped": 1
+        },
+        "backend_regression": {
+          "passed": 6
+        },
+        "openapi": "PASS"
+      },
+      "remote_blob_matches": {
+        "backend/alembic.ini": "8d81203804198a7343ecdce0342d24a74db78af8",
+        "backend/migrations/env.py": "5644b76419b3003abfe029a980c0a2f8ad43240a",
+        "backend/migrations/versions/0001_identity_foundation.py": "2870de7feb5901d92e75184a22a18490be1197bc",
+        "backend/db_tests/test_migration.py": "34c53dadeb13f44fc2b99e54fafb892885bface5",
+        "backend/requirements-db-linux-py313.lock": "9df005ca49a246f3dbe2f9a810b52e4447c398b0"
+      },
+      "ci_candidate": "46d58f5b08d0e1c885dbfab61f26fab75e978109",
+      "run_id": 46024093866,
+      "status": "PENDING_AT_OBSERVATION",
+      "neon_readback": {
+        "branch": "nur-path-dev",
+        "postgres": "18.7",
+        "application_schema_exists": false
+      },
+      "limits": "Offline DDL and guard tests only locally; no real PostgreSQL migration, application driver TLS, RBAC, or full ownership RLS test verified. CI loopback/identity guard is not cryptographic proof of disposable ownership; use dedicated service only. No cloud schema write, downgrade or credentials."
+    },
+    {
+      "id": "NP-EV-DB001-RUNTIME-CONFIG-002",
+      "task": "NP-DB-001",
+      "source_commit": "489efc995b754e646bf00c971b470c7b07789563",
+      "local": {
+        "red": "ImportError before implementation",
+        "db_tests": {
+          "passed": 21,
+          "skipped": 1,
+          "new_cases": 18
+        },
+        "backend_tests": {
+          "passed": 6
+        },
+        "openapi": "PASS"
+      },
+      "source_blobs": {
+        "backend/app/database_config.py": "74d5030ce727a5fe73eb82a0915e77259c281e63",
+        "backend/db_tests/test_runtime_database_config.py": "b3f35c092da5715605b004e74b8f8891d90e69c9"
+      },
+      "scope": "Pure SQLAlchemy URL validation: dedicated role, independently configured host/database, explicit port, verify-full + system CA, exact query allowlist, generic error. No network connection.",
+      "limitations": "Actual driver support for sslrootcert=system, live TLS, least-privilege role grants and DB migration remain NOT_RUN. Guard not wired into app yet. CI run 64 cancelled, run 69/70 pending at earlier observation; inspect latest source-compatible run."
+    },
+    {
+      "id": "NP-EV-DB001-NEON-MIGRATION-003",
+      "task": "NP-DB-001",
+      "baseline": "c7661cf570164773f5c15020bdd1c86d3c6d2b8f",
+      "ci": {
+        "run_id": 46024703153,
+        "all_jobs": "PASS",
+        "postgres_version": "17.12",
+        "db_tests": {
+          "passed": 22,
+          "skipped": 0
+        },
+        "unittest": 23,
+        "backend_pytest": 6,
+        "flutter_widgets": 2,
+        "native_staging_widgets": 2,
+        "openapi": "PASS"
+      },
+      "neon": {
+        "branch": "nur-path-dev",
+        "postgres": "18.7",
+        "revision": "0001_identity_foundation",
+        "method": "Exact reviewed Alembic offline SQL applied via guarded connector transaction, 18 statements including precondition",
+        "tables": [
+          "principals",
+          "external_identities",
+          "preferences"
+        ],
+        "rls_enabled_and_forced": 3,
+        "public_table_access_revoked": 3,
+        "policies": 0,
+        "all_constraints_validated": true,
+        "parent_schema_absent": true,
+        "parent_role_absent": true,
+        "parent_auth_tables": 9,
+        "role": {
+          "name": "nurpath_app",
+          "access": "read_only",
+          "superuser": false,
+          "bypassrls": false,
+          "createrole": false,
+          "createdb": false,
+          "replication": false,
+          "neon_admin": false,
+          "auth_schema_usage": false,
+          "accessible_auth_tables": 0,
+          "app_schema_create": false,
+          "select_tables": 3,
+          "write_tables": 0,
+          "actual_role_connection": "PASS",
+          "auth_read_denied_sqlstate": "42501",
+          "insert_permission_denied_sqlstate": "42501",
+          "client_tls": "NOT_VERIFIED",
+          "connector_server_ssl_flag": false
+        }
+      },
+      "limitations": "No synthetic records inserted in Neon; actual default-deny RLS behavior tested in CI, catalog readback on Neon. No live user/auth activation. Read-only role provisioned, credential response filtered; no password/URL published."
+    },
+    {
+      "id": "NP-EV-DB001-TLS-PROBE-004",
+      "task": "NP-DB-001",
+      "source_commit": "86f563e8bf5bf97f9734ef2dc26943521b3773e9",
+      "source_blobs": {
+        "backend/app/database_probe.py": "17f604258d29fc5b239696541f6bb4976007b6fd",
+        "backend/db_tests/test_database_probe.py": "15d24eb5f16a4692c8c9f464be22b3c72fa3f182",
+        "scripts/check_runtime_database.py": "c67493d8521f7e235b61e129c18a941392ee1a12"
+      },
+      "local": {
+        "mocked_probe_tests": 9,
+        "backend_tests": 6,
+        "openapi": "PASS"
+      },
+      "live_role_scope_query": "PASS on Neon using scoped role",
+      "external_tls": "BLOCKED: current execution environment DNS lookup returned temporary failure in name resolution; no external TLS handshake",
+      "ci_candidate": {
+        "run_id": 46025780937,
+        "status_at_observation": "pending"
+      },
+      "limitations": "No actual app-driver TLS yet, no readiness change. Require trusted network-enabled runner and private secret injection; no owner credentials, no repo-level secrets while legacy workflow finding is open. Pending-first instruction: do not begin next task until current verification blockers are resolved or founder explicitly changes priority."
+    }
+  ]
+}

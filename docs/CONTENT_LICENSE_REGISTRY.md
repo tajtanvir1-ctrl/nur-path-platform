@@ -1,0 +1,3 @@
+# Content license register
+
+No edition-specific license or scholar approval document has been independently verified at this checkpoint. Founder previously indicated licenses are available; that is a pending evidence request, not authorization to redistribute any particular edition. Track Quran Arabic, each translation, Tafsir, Hadith collection, Dua, reciter audio, fonts, video and stream rights separately. Required fields: item ID, provider, edition, source URL, license evidence, permitted languages/territories, offline/distribution/derivative rights, expiration, checksum, reviewer, release eligibility. Default release eligibility: BLOCKED. Synthetic fixtures must not contain invented sacred text presented as genuine.

@@ -1,0 +1,651 @@
+{
+  "schema_version": 2,
+  "tasks": [
+    {
+      "id": "NP-CORE-001",
+      "status": "VERIFIED",
+      "scope": "governance, source provenance, complete registries, acceptance criteria",
+      "depends_on": [],
+      "group": "A",
+      "features": []
+    },
+    {
+      "id": "NP-CORE-002",
+      "status": "VERIFIED",
+      "depends_on": [
+        "NP-CORE-001"
+      ],
+      "scope": "monorepo and reproducible environment",
+      "group": "A",
+      "features": []
+    },
+    {
+      "id": "NP-ARCH-001",
+      "status": "VERIFIED",
+      "depends_on": [
+        "NP-CORE-002"
+      ],
+      "scope": "architecture decisions and API contracts",
+      "group": "A",
+      "features": []
+    },
+    {
+      "id": "NP-DB-001",
+      "status": "IN_PROGRESS",
+      "depends_on": [
+        "NP-ARCH-001"
+      ],
+      "scope": "database migrations and integration tests",
+      "group": "A",
+      "features": []
+    },
+    {
+      "id": "NP-UI-001",
+      "status": "BACKLOG",
+      "depends_on": [
+        "NP-ARCH-001"
+      ],
+      "scope": "Flutter design system and navigation",
+      "group": "A",
+      "features": []
+    },
+    {
+      "id": "NP-AUTH-001",
+      "status": "BACKLOG",
+      "depends_on": [
+        "NP-DB-001",
+        "NP-ARCH-001"
+      ],
+      "scope": "authentication and authorization",
+      "group": "A",
+      "features": []
+    },
+    {
+      "id": "NP-CI-001",
+      "status": "BACKLOG",
+      "depends_on": [
+        "NP-CORE-002",
+        "NP-UI-001",
+        "NP-AUTH-001"
+      ],
+      "scope": "CI and executable verification",
+      "group": "A",
+      "features": []
+    },
+    {
+      "id": "CTO-GATE-01",
+      "status": "BLOCKED",
+      "depends_on": [
+        "NP-CORE-001",
+        "NP-CI-001"
+      ],
+      "scope": "foundation review; no self approval",
+      "group": "A",
+      "features": []
+    },
+    {
+      "id": "NP-DATA-001",
+      "status": "BACKLOG",
+      "depends_on": [
+        "CTO-GATE-01"
+      ],
+      "scope": "verified Quran and Hadith ingestion",
+      "group": "B",
+      "features": [
+        "NP-F05",
+        "NP-F08",
+        "NP-F09"
+      ]
+    },
+    {
+      "id": "NP-QURAN-001",
+      "group": "B",
+      "scope": "Reader, search, bookmarks",
+      "depends_on": [
+        "NP-DATA-001"
+      ],
+      "features": [
+        "NP-F05"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-AUDIO-001",
+      "group": "B",
+      "scope": "Licensed audio and download lifecycle",
+      "depends_on": [
+        "NP-QURAN-001"
+      ],
+      "features": [
+        "NP-F06"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-PRAYER-001",
+      "group": "B",
+      "scope": "Prayer calculation and Qibla",
+      "depends_on": [
+        "CTO-GATE-01"
+      ],
+      "features": [
+        "NP-F07"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-DUA-001",
+      "group": "B",
+      "scope": "Reviewed Dua and Azkar",
+      "depends_on": [
+        "NP-DATA-001"
+      ],
+      "features": [
+        "NP-F08"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-OFFLINE-001",
+      "group": "B",
+      "scope": "Durable outbox, packs and sync",
+      "depends_on": [
+        "NP-QURAN-001",
+        "NP-AUDIO-001",
+        "NP-DUA-001"
+      ],
+      "features": [
+        "NP-F14"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-LANG-001",
+      "group": "B",
+      "scope": "Four languages and RTL",
+      "depends_on": [
+        "NP-OFFLINE-001",
+        "NP-PRAYER-001"
+      ],
+      "features": [
+        "NP-F15"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "CTO-GATE-02",
+      "group": "B",
+      "scope": "Core religious content review",
+      "depends_on": [
+        "NP-QURAN-001",
+        "NP-AUDIO-001",
+        "NP-PRAYER-001",
+        "NP-DUA-001",
+        "NP-OFFLINE-001",
+        "NP-LANG-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-EVAL-001",
+      "group": "C",
+      "scope": "Locked evaluation and corpus provenance",
+      "depends_on": [
+        "CTO-GATE-02"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-AI-001",
+      "group": "C",
+      "scope": "Evidence-based RAG and provider-neutral adapter",
+      "depends_on": [
+        "NP-EVAL-001"
+      ],
+      "features": [
+        "NP-F09"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-AI-002",
+      "group": "C",
+      "scope": "Citation validator, abstention, safety",
+      "depends_on": [
+        "NP-AI-001"
+      ],
+      "features": [
+        "NP-F09"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-TAJWEED-001",
+      "group": "C",
+      "scope": "Consent, recording and acoustic pipeline",
+      "depends_on": [
+        "NP-EVAL-001"
+      ],
+      "features": [
+        "NP-F02"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-TAJWEED-002",
+      "group": "C",
+      "scope": "Calibrated rule assessment",
+      "depends_on": [
+        "NP-TAJWEED-001"
+      ],
+      "features": [
+        "NP-F02"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-JOURNEY-001",
+      "group": "C",
+      "scope": "Reviewed thematic journeys",
+      "depends_on": [
+        "NP-EVAL-001",
+        "NP-AI-002"
+      ],
+      "features": [
+        "NP-F04"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "CTO-GATE-03",
+      "group": "C",
+      "scope": "AI accuracy and religious safety review",
+      "depends_on": [
+        "NP-AI-002",
+        "NP-TAJWEED-002",
+        "NP-JOURNEY-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-IMAM-001",
+      "group": "D",
+      "scope": "Scholar onboarding and verification",
+      "depends_on": [
+        "CTO-GATE-03"
+      ],
+      "features": [
+        "NP-F01"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-IMAM-002",
+      "group": "D",
+      "scope": "Private consultations, assignment, sandbox billing",
+      "depends_on": [
+        "NP-IMAM-001"
+      ],
+      "features": [
+        "NP-F01"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-HALAL-001",
+      "group": "D",
+      "scope": "Evidence-aware directory",
+      "depends_on": [
+        "CTO-GATE-03"
+      ],
+      "features": [
+        "NP-F03"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-HABIT-001",
+      "group": "D",
+      "scope": "Private habits and sync",
+      "depends_on": [
+        "CTO-GATE-03"
+      ],
+      "features": [
+        "NP-F10"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-DAILY-001",
+      "group": "D",
+      "scope": "Reviewed daily content and native widgets",
+      "depends_on": [
+        "CTO-GATE-03"
+      ],
+      "features": [
+        "NP-F11"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-SHORTS-001",
+      "group": "D",
+      "scope": "Reviewed media and reports",
+      "depends_on": [
+        "CTO-GATE-03"
+      ],
+      "features": [
+        "NP-F12"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-COMMUNITY-001",
+      "group": "D",
+      "scope": "Moderation, appeals and privacy",
+      "depends_on": [
+        "NP-HABIT-001",
+        "NP-SHORTS-001"
+      ],
+      "features": [
+        "NP-F13"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "CTO-GATE-04",
+      "group": "D",
+      "scope": "Lifestyle and community review",
+      "depends_on": [
+        "NP-IMAM-002",
+        "NP-HALAL-001",
+        "NP-HABIT-001",
+        "NP-DAILY-001",
+        "NP-SHORTS-001",
+        "NP-COMMUNITY-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-BILLING-001",
+      "group": "E",
+      "scope": "Entitlements and quota enforcement",
+      "depends_on": [
+        "CTO-GATE-04"
+      ],
+      "features": [
+        "NP-F16"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-BILLING-002",
+      "group": "E",
+      "scope": "Sandbox store payments and reconciliation",
+      "depends_on": [
+        "NP-BILLING-001"
+      ],
+      "features": [
+        "NP-F16"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-COST-001",
+      "group": "E",
+      "scope": "Budget metering and circuit breakers",
+      "depends_on": [
+        "NP-BILLING-001",
+        "NP-AI-002"
+      ],
+      "features": [
+        "NP-F09",
+        "NP-F16"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-ADMIN-001",
+      "group": "E",
+      "scope": "Admin, scholar, moderation operations",
+      "depends_on": [
+        "NP-BILLING-002",
+        "NP-COST-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "CTO-GATE-05",
+      "group": "E",
+      "scope": "Commercial integrity review",
+      "depends_on": [
+        "NP-BILLING-002",
+        "NP-COST-001",
+        "NP-ADMIN-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-INTEGRATION-001",
+      "group": "F",
+      "scope": "Full feature traceability and integration",
+      "depends_on": [
+        "CTO-GATE-05"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-QA-001",
+      "group": "F",
+      "scope": "Regression suite",
+      "depends_on": [
+        "NP-INTEGRATION-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-SEC-001",
+      "group": "F",
+      "scope": "Independent security review and remediation",
+      "depends_on": [
+        "NP-QA-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-PERF-001",
+      "group": "F",
+      "scope": "Defined-load performance",
+      "depends_on": [
+        "NP-QA-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-ACCESS-001",
+      "group": "F",
+      "scope": "Accessibility and four-language RTL review",
+      "depends_on": [
+        "NP-QA-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-DEVICE-001",
+      "group": "F",
+      "scope": "Android/iOS builds and physical device testing",
+      "depends_on": [
+        "NP-QA-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-OPS-001",
+      "group": "F",
+      "scope": "Monitoring, backups, isolated restore",
+      "depends_on": [
+        "NP-SEC-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-BETA-001",
+      "group": "F",
+      "scope": "Authorized closed beta",
+      "depends_on": [
+        "NP-SEC-001",
+        "NP-PERF-001",
+        "NP-ACCESS-001",
+        "NP-DEVICE-001",
+        "NP-OPS-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-RELEASE-001",
+      "group": "F",
+      "scope": "Release candidate evidence and store prep",
+      "depends_on": [
+        "NP-BETA-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "CTO-GATE-06",
+      "group": "F",
+      "scope": "Independent launch readiness review",
+      "depends_on": [
+        "NP-RELEASE-001"
+      ],
+      "features": [],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-Y1-17",
+      "group": "YEAR1_PHASE2",
+      "scope": "Zakat; separate approval before implementation",
+      "depends_on": [
+        "CTO-GATE-06"
+      ],
+      "features": [
+        "NP-F17"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-Y1-18",
+      "group": "YEAR1_PHASE2",
+      "scope": "Calendar; separate approval before implementation",
+      "depends_on": [
+        "CTO-GATE-06"
+      ],
+      "features": [
+        "NP-F18"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-Y1-19",
+      "group": "YEAR1_PHASE2",
+      "scope": "Hifz; separate approval before implementation",
+      "depends_on": [
+        "CTO-GATE-06"
+      ],
+      "features": [
+        "NP-F19"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-Y1-20",
+      "group": "YEAR1_PHASE2",
+      "scope": "Kids; separate approval before implementation",
+      "depends_on": [
+        "CTO-GATE-06"
+      ],
+      "features": [
+        "NP-F20"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-Y1-21",
+      "group": "YEAR1_PHASE3",
+      "scope": "Family; separate approval before implementation",
+      "depends_on": [
+        "CTO-GATE-06",
+        "NP-Y1-17",
+        "NP-Y1-18",
+        "NP-Y1-19",
+        "NP-Y1-20"
+      ],
+      "features": [
+        "NP-F21"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-Y1-22",
+      "group": "YEAR1_PHASE3",
+      "scope": "Hajj/Umrah; separate approval before implementation",
+      "depends_on": [
+        "CTO-GATE-06",
+        "NP-Y1-17",
+        "NP-Y1-18",
+        "NP-Y1-19",
+        "NP-Y1-20"
+      ],
+      "features": [
+        "NP-F22"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-Y1-23",
+      "group": "YEAR1_PHASE3",
+      "scope": "Live streaming; separate approval before implementation",
+      "depends_on": [
+        "CTO-GATE-06",
+        "NP-Y1-17",
+        "NP-Y1-18",
+        "NP-Y1-19",
+        "NP-Y1-20"
+      ],
+      "features": [
+        "NP-F23"
+      ],
+      "status": "BACKLOG"
+    },
+    {
+      "id": "NP-Y1-24",
+      "group": "YEAR1_PHASE3",
+      "scope": "Halal commerce; separate approval before implementation",
+      "depends_on": [
+        "CTO-GATE-06",
+        "NP-Y1-17",
+        "NP-Y1-18",
+        "NP-Y1-19",
+        "NP-Y1-20"
+      ],
+      "features": [
+        "NP-F24"
+      ],
+      "status": "BACKLOG"
+    }
+  ]
+}

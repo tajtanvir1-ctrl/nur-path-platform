@@ -1,0 +1,3 @@
+# Audit handoff — baseline V0.1
+
+Review boundary: canonical development branch, exact SHA from remote. Previous Antigravity completion claims lacked accessible source; not accepted. Current verified evidence is scoped health and governance/planner code, not production functionality. See evidence-index.json, SECURITY_FINDINGS.md, RISK_REGISTER.md and CTO_REVIEW_PROTOCOL.md. No independent CTO approval. Gate 01 blocked on remaining foundation implementation, real DB/auth tests, native evidence and CI. Gates 02–06 pending. Review exact source and attest limitations; do not infer approvals from this document.

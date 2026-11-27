@@ -1,0 +1,81 @@
+name: Neon development connection verification
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/neon-connection-check.yml', 'backend/app/database_probe.py', 'backend/app/database_config.py', 'backend/requirements*', 'scripts/check_runtime_database.py']
+permissions:
+  contents: read
+concurrency:
+  group: neon-development-probe-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  NP_DB_EXPECTED_HOST: ep-blue-hat-bbcq2heq.c-15.us-east-1.aws.neon.tech
+  NP_DB_EXPECTED_DATABASE: neondb
+jobs:
+  network:
+    if: github.event.pull_request.number == 1 && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/NP-CORE-001-foundation'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Verify DNS and PostgreSQL TLS without credentials
+        run: |
+          python3 - <<'PY'
+          import os, socket, ssl, struct
+          host = os.environ['NP_DB_EXPECTED_HOST']
+          records = socket.getaddrinfo(host, 5432, type=socket.SOCK_STREAM)
+          if not records:
+              raise RuntimeError('No DNS records')
+          print('PASS: DNS resolution')
+          with socket.create_connection((host, 5432), timeout=15) as sock:
+              print('PASS: TCP connection')
+              sock.sendall(struct.pack('!II', 8, 80877103))
+              if sock.recv(1) != b'S':
+                  raise RuntimeError('PostgreSQL refused TLS')
+              with ssl.create_default_context().wrap_socket(sock, server_hostname=host) as tls:
+                  print('PASS: certificate chain and hostname verification; TLS', tls.version())
+          PY
+  authenticated-readonly:
+    if: github.event.pull_request.number == 1 && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/NP-CORE-001-foundation'
+    needs: network
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: nur-path-neon-verification
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13.5'
+      - name: Install pinned probe dependencies without credentials
+        run: |
+          python -m venv .venv-db
+          .venv-db/bin/python -m pip install --only-binary=:all: --no-deps -r backend/requirements-linux-py313.lock -r backend/requirements-db-linux-py313.lock
+          .venv-db/bin/python -m pip check
+      - name: Verify authenticated client TLS and role scope
+        env:
+          NP_NEON_READONLY_PASSWORD: ${{ secrets.NP_NEON_READONLY_PASSWORD }}
+        run: |
+          .venv-db/bin/python - <<'PY'
+          import os, sys
+          from sqlalchemy.engine import URL
+          sys.path.insert(0, 'backend')
+          from app.database_probe import probe_runtime_database
+          password = os.environ.get('NP_NEON_READONLY_PASSWORD', '')
+          if not password:
+              print('BLOCKED: protected environment secret is not configured', file=sys.stderr)
+              raise SystemExit(1)
+          host = os.environ['NP_DB_EXPECTED_HOST']
+          database = os.environ['NP_DB_EXPECTED_DATABASE']
+          url = URL.create('postgresql+psycopg', username='nurpath_app',
+                           password=password, host=host, port=5432, database=database,
+                           query={'sslmode':'verify-full','sslrootcert':'system'})
+          try:
+              probe_runtime_database(url.render_as_string(hide_password=False),
+                                     expected_host=host, expected_database=database)
+          except Exception:
+              print('FAIL: authenticated development database probe', file=sys.stderr)
+              raise SystemExit(1) from None
+          print('PASS: authenticated client TLS and read-only database role scope')
+          PY
