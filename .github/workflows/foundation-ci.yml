@@ -11,7 +11,7 @@ permissions:
   contents: read
 concurrency:
   group: foundation-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   backend:
     runs-on: ubuntu-24.04
@@ -45,19 +45,19 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: flutter/flutter
-          ref: refs/tags/3.50.0
+          ref: refs/tags/3.44.0
           fetch-depth: 1
           fetch-tags: true
           path: .toolchain/flutter
           persist-credentials: false
       - name: Check official Flutter SDK revision
         run: |
-          test "$(git -C .toolchain/flutter rev-parse HEAD)" = ab2912035e160d9cad6306df307576da6128ebdb
-          test "$(git -C .toolchain/flutter describe --tags --exact-match)" = 3.50.0
+          test "$(git -C .toolchain/flutter rev-parse HEAD)" = 559ffa3f75e7402d65a8def9c28389a9b2e6fe42
+          test "$(git -C .toolchain/flutter describe --tags --exact-match)" = 3.44.0
           # Initialize the SDK before capturing machine-readable output.
           .toolchain/flutter/bin/flutter --version
           .toolchain/flutter/bin/flutter --version --machine > "$RUNNER_TEMP/flutter-version.json"
-          python3 -c 'import json,sys; v=json.load(open(sys.argv[1])); assert v["frameworkVersion"] == "3.50.0", v["frameworkVersion"]' "$RUNNER_TEMP/flutter-version.json"
+          python3 -c 'import json,sys; v=json.load(open(sys.argv[1])); assert v["frameworkVersion"] == "3.44.0", v["frameworkVersion"]' "$RUNNER_TEMP/flutter-version.json"
           echo "$GITHUB_WORKSPACE/.toolchain/flutter/bin" >> "$GITHUB_PATH"
       - name: Resolve, analyze and test
         working-directory: apps/mobile
@@ -65,3 +65,31 @@ jobs:
           flutter pub get
           flutter analyze
           flutter test
+      - name: Generate native platform scaffold in disposable staging
+        run: |
+          stage="$RUNNER_TEMP/nur_path_native"
+          test ! -e "$stage"
+          flutter create --platforms=android,ios --org com.solvegrid --project-name nur_path --no-pub "$stage"
+          cp apps/mobile/pubspec.yaml "$stage/pubspec.yaml"
+          cp apps/mobile/pubspec.lock "$stage/pubspec.lock"
+          cp apps/mobile/lib/main.dart "$stage/lib/main.dart"
+          cp apps/mobile/test/app_test.dart "$stage/test/widget_test.dart"
+          cmp apps/mobile/lib/main.dart "$stage/lib/main.dart"
+          test -d "$stage/android" && test -d "$stage/ios"
+          test -f "$stage/ios/Runner/Info.plist"
+          test -f "$stage/android/app/src/main/AndroidManifest.xml"
+          (cd "$stage" && flutter pub get && flutter analyze && flutter test)
+      - name: Publish generated scaffold for source review
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: nur-path-native-scaffold
+          path: |
+            ${{ runner.temp }}/nur_path_native/android/
+            ${{ runner.temp }}/nur_path_native/ios/
+            ${{ runner.temp }}/nur_path_native/pubspec.lock
+            !${{ runner.temp }}/nur_path_native/android/local.properties
+            !${{ runner.temp }}/nur_path_native/ios/Flutter/ephemeral/**
+            !${{ runner.temp }}/nur_path_native/ios/Flutter/Generated.xcconfig
+            !${{ runner.temp }}/nur_path_native/ios/Flutter/flutter_export_environment.sh
+          if-no-files-found: error
+          retention-days: 7
