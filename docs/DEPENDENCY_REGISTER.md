@@ -1,0 +1,3 @@
+# Dependency register
+
+Observed backend direct pins in backend/requirements-dev.txt: FastAPI, Pydantic, HTTPX, pytest, Uvicorn. These are local observed versions, not a clean transitive lock. Record package source, version, license, integrity, runtime/dev scope and vulnerability review before release. Flutter/Riverpod/GoRouter/Drift, SQLAlchemy/Alembic/PostgreSQL, Redis and Next.js are proposed stack choices, not verified installation. ECC and automation archives are workflow references; FreeLLMAPI controlled evaluation authorized, no installation or live traffic. Do not run third-party installers or add paid dependencies without review. No current dependency security clearance.
