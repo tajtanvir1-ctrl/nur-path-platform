@@ -23,3 +23,5 @@
 
 - NP-ADR-013: Accept scoped CORE-002 using the verified pinned SDK native regeneration path and exact lockfile. Native source integration and compilation remain later requirements; debug signing and provisional identifiers are not release-ready.
 - NP-ADR-014: FastAPI runtime OpenAPI snapshot is checked in CI and explicit regeneration requires --write; no silent contract drift. Integration registry distinguishes tested endpoints from planned app/database connectivity.
+
+- NP-ADR-015: Keep modular FastAPI monolith, provider-independent verified issuer/subject identity mapping, app-owned UUID and portable PostgreSQL migrations. Initial schema default-deny RLS; no app grants until verified auth/role policy. Use PostgreSQL 17 disposable CI for first migration, no cloud writes until actual review. PostgreSQL 18 Neon and future Supabase target compatibility require separate verification.
