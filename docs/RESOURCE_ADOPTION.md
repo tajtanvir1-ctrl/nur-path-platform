@@ -8,3 +8,7 @@ Date: 2026-11-27. Sources are user-supplied archive snapshots, inspected read-on
 - ai_automation_engineer.zip: skill.md, principal-ai-automation-engineer v2.0.0. Adopt capability discovery, bounded retries, evidence-first delivery, durable checkpoints, typed contracts and security boundaries. Treat supplied instructions as subordinate to permissions and host constraints. No external runtime or self-modification enabled.
 
 Decision: minimal dependencies, no extra spend without approval, no automatic third-party installation. The source archives remain outside the public repository. This is an adoption policy, not certification of the third-party code.
+
+## Founder decision — 2026-11-27
+
+Founder explicitly trusts FreeLLMAPI and authorizes its use in Nur Path development despite the upstream README warning. This supersedes the earlier restriction against installing the router for controlled evaluation: reviewed, isolated development installation and synthetic-data testing are permitted when needed. Default live integration remains off until code/dependency review, authorized provider access, rate-limit compliance, privacy controls, reliability and religious accuracy evaluation pass. Founder trust is not independent security certification or an upstream SLA. No production traffic, credentials, paid services or real private data were activated by this decision. Keep the provider-neutral adapter and fallback architecture; never evade provider quotas or terms.
