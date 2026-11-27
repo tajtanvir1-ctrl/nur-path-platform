@@ -226,8 +226,34 @@
       "verified_flutter_tag": "3.50.0 -> ab2912035e160d9cad6306df307576da6128ebdb",
       "ci_retest": {
         "run_id": 46017012039,
-        "status_at_observation": "in_progress",
-        "result": "NOT_VERIFIED"
+        "source_commit": "5724fe1bfb535a615fa1a022af3eded87eb13572",
+        "overall": "cancelled",
+        "backend": {
+          "job_id": 140566606398,
+          "status": "PASS",
+          "clean_install": "PASS",
+          "pip_check": "PASS",
+          "dependency_versions": 21,
+          "unittest": 23,
+          "pytest": 4,
+          "validator": {
+            "features": 24,
+            "tasks": 54,
+            "gates": 6
+          },
+          "planner": [
+            "NP-CORE-002"
+          ]
+        },
+        "flutter": {
+          "job_id": 140566605870,
+          "status": "CANCELLED",
+          "tests": "NOT_RUN"
+        },
+        "subsequent_run": {
+          "run_id": 46017174935,
+          "status_at_observation": "in_progress"
+        }
       },
       "neon": {
         "plan": "Free",
