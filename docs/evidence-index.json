@@ -451,6 +451,29 @@
         "application_schema_exists": false
       },
       "limits": "Offline DDL and guard tests only locally; no real PostgreSQL migration, application driver TLS, RBAC, or full ownership RLS test verified. CI loopback/identity guard is not cryptographic proof of disposable ownership; use dedicated service only. No cloud schema write, downgrade or credentials."
+    },
+    {
+      "id": "NP-EV-DB001-RUNTIME-CONFIG-002",
+      "task": "NP-DB-001",
+      "source_commit": "489efc995b754e646bf00c971b470c7b07789563",
+      "local": {
+        "red": "ImportError before implementation",
+        "db_tests": {
+          "passed": 21,
+          "skipped": 1,
+          "new_cases": 18
+        },
+        "backend_tests": {
+          "passed": 6
+        },
+        "openapi": "PASS"
+      },
+      "source_blobs": {
+        "backend/app/database_config.py": "74d5030ce727a5fe73eb82a0915e77259c281e63",
+        "backend/db_tests/test_runtime_database_config.py": "b3f35c092da5715605b004e74b8f8891d90e69c9"
+      },
+      "scope": "Pure SQLAlchemy URL validation: dedicated role, independently configured host/database, explicit port, verify-full + system CA, exact query allowlist, generic error. No network connection.",
+      "limitations": "Actual driver support for sslrootcert=system, live TLS, least-privilege role grants and DB migration remain NOT_RUN. Guard not wired into app yet. CI run 64 cancelled, run 69/70 pending at earlier observation; inspect latest source-compatible run."
     }
   ]
 }
