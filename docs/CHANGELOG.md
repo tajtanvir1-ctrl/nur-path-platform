@@ -17,3 +17,6 @@ Audited V0.5 and failed CI; provisioned isolated Neon development child branch a
 
 ## V0.7 — Flutter CI remediation
 Run 15 failed on startup JSON parsing; Run 17 reached dependency resolution and analyzer, exposing three Flutter 3.50 Material deprecations. Backend clean CI 27/27 pass and all 21 pins match. Pinned Flutter 3.44.0 and added disposable native platform generation, repeat tests and review artifact; Run 19 result pending. No mobile test/build success claimed yet.
+
+## V0.8 — Native staging consistency
+Verified Run 19 source analyzer and both Flutter widget tests passed. Generated 75 scaffold files, but staging analyzer failed on an include absent in the source package. Corrected stage analyzer configuration and added lock equality check. Run 25 backend PASS; Flutter and artifact pending at observation.
