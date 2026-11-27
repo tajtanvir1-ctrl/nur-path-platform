@@ -1,0 +1,3 @@
+# Qualified religious review
+
+Before publishing an edition, narration, ruling summary, thematic journey or Tajweed rule, verify reviewer qualifications, scope, conflict disclosures and source evidence. Record versioned item IDs, exact text or rule, approved/rejected/changes-required outcome, reviewer identity in authorized private records, date and rationale. Public metadata should not expose private contact details. AI benchmarks require independent held-out cases and reviewer adjudication; ambiguous opinions attributed rather than flattened. Any critical religious error blocks affected release. No reviewer appointed or signoff verified at this checkpoint.
