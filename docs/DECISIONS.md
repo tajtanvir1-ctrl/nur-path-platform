@@ -18,3 +18,5 @@
 - NP-ADR-010: CI remediation pins Ubuntu 24.04 for Python 3.13.5 and uses Flutter 3.50.0 tagged checkout with exact SHA and version assertion. Actual runner result required.
 
 - NP-ADR-011: Pin Flutter 3.44.0 (559ffa3f75e7402d65a8def9c28389a9b2e6fe42) for existing Material API compatibility rather than suppress analyzer deprecations or introduce an unreviewed package. SDK warmed before machine version check. Generate Android/iOS scaffold in disposable CI stage; provisional namespace com.solvegrid is development-only. Review artifact before integrating. Do not cancel active verification merely to publish continuity documents.
+
+- NP-ADR-012: Native staging reproduces the original package analyzer configuration rather than inheriting unrelated generated template lints. Check lock equality before artifact publication. No suppressed analyzer diagnostics, new dependencies or production identifiers.
