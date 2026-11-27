@@ -45,6 +45,36 @@
         "coverage"
       ],
       "limitations": "No production readiness; 503 intentional; all product features backlog."
+    },
+    {
+      "id": "NP-EV-CORE001-GOV-002",
+      "task": "NP-CORE-001",
+      "scope": "governance validator and remote dependency graph",
+      "tested_source_commit": "9dbcc15a1349969f7d49337d9749690c94aacfb0",
+      "environment": {
+        "python": "3.13.5",
+        "framework": "unittest"
+      },
+      "command": "python -m unittest discover -s tests -p test_governance.py -v",
+      "result": {
+        "exit": 0,
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "remote_blob_matches": {
+        "scripts/validate_governance.py": "8db3cc436500b0420a3f908c17e9bd1619d5c7b7",
+        "tests/test_governance.py": "3778b5a53e5c77b254fc2ed31e755e7896aff7e0"
+      },
+      "remote_registry_check": {
+        "method": "JSON read and deterministic JavaScript graph checks",
+        "features": 24,
+        "tasks": 54,
+        "gates": 6,
+        "acyclic": true,
+        "all_dependencies_resolve": true
+      },
+      "limitations": "Python CLI against actual remote JSON not run; unit tests used synthetic fixtures. No product feature, native build, CI, DB, or live AI verification."
     }
   ]
 }
