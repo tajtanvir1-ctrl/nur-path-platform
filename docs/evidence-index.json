@@ -105,6 +105,110 @@
         "backend/tests/test_health.py": "b1629648b8eec6aea409683366f5393e9cb25c11"
       },
       "limitations": "Planner fixture tests; CLI against actual remote registries not run. Approval reference presence does not authenticate approval. No native, real database, CI, or live AI tests."
+    },
+    {
+      "id": "NP-EV-CORE001-ACCEPTANCE-004",
+      "task": "NP-CORE-001",
+      "scope": "scoped governance acceptance; no independent approval",
+      "source_commit": "c2cd4315e669e9736cb72a570fd6701284c32c34",
+      "commands": [
+        {
+          "command": "python scripts/validate_governance.py",
+          "exit": 0,
+          "result": {
+            "features": 24,
+            "tasks": 54,
+            "gates": 6
+          }
+        },
+        {
+          "command": "python scripts/next_task.py",
+          "exit": 0,
+          "result": [
+            "NP-CORE-001"
+          ]
+        }
+      ],
+      "exact_registry_blobs": {
+        "docs/feature-registry.json": "4eeeaff29a695a63295aef8909a73d9dd0c83298",
+        "docs/task-registry.json": "f2b9d018798f147fd8c739208c175187c5101f3e",
+        "docs/quality-gates.json": "ac8ca7aba459f949bf85e7dd9f91018a91044e07"
+      },
+      "new_policy_files_read_back": 20,
+      "transition_commit": "5ce1cf01a8b3b1ece03415443bab97717d96e6bb",
+      "post_transition_registry_blob": "78f7ff4df583ae94dd425f9d46bdfcc2a1760964",
+      "post_transition_next_task": [
+        "NP-CORE-002"
+      ],
+      "acceptance": "docs/NP-CORE-001_ACCEPTANCE.md",
+      "limitations": "Planning governance only; all V1 product features backlog; no external gate approval."
+    },
+    {
+      "id": "NP-EV-CORE002-ENV-001",
+      "task": "NP-CORE-002",
+      "scope": "environment preflight, regression and Flutter scaffold",
+      "tested_source_commit": "1ba937c504294ca5d09b1f56d57b5875f682b7bf",
+      "environment": "Linux Python 3.13.5, installed dependency closure",
+      "red": {
+        "command": "python -m unittest discover -s tests -p test_environment.py -v",
+        "exit": 1,
+        "result": "module not implemented; import error"
+      },
+      "commands": [
+        {
+          "command": "python scripts/check_environment.py",
+          "exit": 0,
+          "checked": 21,
+          "failures": []
+        },
+        {
+          "command": "python -m unittest discover -s tests -v",
+          "exit": 0,
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        },
+        {
+          "command": "cd backend && PYTHONPATH=. python -m pytest -q -p no:cacheprovider tests/test_health.py",
+          "exit": 0,
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        {
+          "command": "python -m compileall -q scripts tests backend/app backend/tests",
+          "exit": 0
+        }
+      ],
+      "loopback_http": {
+        "status": "PASS",
+        "server": "uvicorn",
+        "live": 200,
+        "ready": 503
+      },
+      "new_test_cases": 7,
+      "remote_blob_matches": {
+        "scripts/check_environment.py": "a1f69d3155d9e4fc7f4d278b335e0ad044c34807",
+        "tests/test_environment.py": "02a9d5158b2b32c579abcf4e91dc7eb8078e4dff",
+        "backend/requirements-linux-py313.lock": "62d76eec931e2f998a7fa74f7f4b152121b76ba8",
+        "apps/mobile/pubspec.yaml": "4e789d2c35e2b1f986c9afd3b422d667fdf6ef49",
+        "apps/mobile/lib/main.dart": "8dae8f83623f14ed66164b6e8fd4c9b52b9180ab",
+        "apps/mobile/test/app_test.dart": "5ab76dd97541679056614ef8328f629ca9dfac70"
+      },
+      "mobile_manifest_yaml": "PASS; not Flutter execution",
+      "ci_candidate_commit": "850dfc0fb126a403cf2b580f12a3e510e04657dd",
+      "draft_pr": "https://github.com/tajtanvir1-ctrl/nur-path-platform/pull/1",
+      "ci_results": "NOT_VERIFIED; connector returned no PR-triggered runs or status checks at inspection",
+      "not_run": [
+        "Clean install",
+        "Flutter analysis",
+        "Flutter widget tests (2 generated)",
+        "Android/iOS native builds",
+        "PostgreSQL integration",
+        "live AI",
+        "independent review"
+      ],
+      "limitations": "Observed lock without package hashes; local git DNS unavailable; source via connector."
     }
   ]
 }
