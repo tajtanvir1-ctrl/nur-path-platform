@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "evidence": [
+    {
+      "id": "NP-EV-CORE001-HEALTH-001",
+      "task": "NP-CORE-001",
+      "scope": "backend feasibility spike",
+      "tested_source_commit": "e477688d89ffbf7869e2d7b28d6db189026ff538",
+      "environment": {
+        "python": "3.13.5",
+        "fastapi": "0.128.2",
+        "pydantic": "2.13.5",
+        "httpx": "0.28.1",
+        "pytest": "9.0.2",
+        "transport": "in-process ASGI TestClient"
+      },
+      "command": "cd backend && PYTHONPATH=. python -m pytest -q -p no:cacheprovider tests/test_health.py",
+      "red": {
+        "exit": 1,
+        "failed": 4
+      },
+      "green": {
+        "exit": 0,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "compileall": {
+        "command": "python -m compileall -q app tests",
+        "exit": 0
+      },
+      "remote_blob_matches": {
+        "backend/app/main.py": "e9455f57435a194dbf69cdf06194e87f7f67e4bf",
+        "backend/tests/test_health.py": "b1629648b8eec6aea409683366f5393e9cb25c11"
+      },
+      "not_run": [
+        "Flutter native builds",
+        "PostgreSQL integration",
+        "CI",
+        "dependency lock clean install",
+        "live AI",
+        "independent audit",
+        "lint",
+        "typecheck",
+        "coverage"
+      ],
+      "limitations": "No production readiness; 503 intentional; all product features backlog."
+    }
+  ]
+}
