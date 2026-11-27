@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   backend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -35,7 +35,7 @@ jobs:
           .venv/bin/python -m unittest discover -s tests -v
           (cd backend && PYTHONPATH=. ../.venv/bin/python -m pytest -q -p no:cacheprovider tests)
   flutter:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -44,13 +44,17 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: flutter/flutter
-          ref: ab2912035e160d9cad6306df307576da6128ebdb
+          ref: refs/tags/3.50.0
+          fetch-depth: 1
+          fetch-tags: true
           path: .toolchain/flutter
           persist-credentials: false
       - name: Check official Flutter SDK revision
         run: |
           test "$(git -C .toolchain/flutter rev-parse HEAD)" = ab2912035e160d9cad6306df307576da6128ebdb
-          .toolchain/flutter/bin/flutter --version
+          test "$(git -C .toolchain/flutter describe --tags --exact-match)" = 3.50.0
+          .toolchain/flutter/bin/flutter --version --machine > "$RUNNER_TEMP/flutter-version.json"
+          python3 -c 'import json,sys; assert json.load(open(sys.argv[1]))["frameworkVersion"] == "3.50.0"' "$RUNNER_TEMP/flutter-version.json"
           echo "$GITHUB_WORKSPACE/.toolchain/flutter/bin" >> "$GITHUB_PATH"
       - name: Resolve, analyze and test
         working-directory: apps/mobile
