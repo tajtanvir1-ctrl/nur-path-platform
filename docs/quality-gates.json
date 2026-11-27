@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "gates": [
+    {
+      "id": "CTO-GATE-01",
+      "status": "BLOCKED",
+      "requirements": [
+        "source and governance complete",
+        "reproducible native and backend foundation",
+        "actual migration and authorization tests",
+        "CI evidence",
+        "independent review"
+      ]
+    },
+    {
+      "id": "CTO-GATE-02",
+      "status": "BACKLOG",
+      "requirements": [
+        "licensed source manifests",
+        "qualified content review",
+        "offline integrity",
+        "prayer golden cases",
+        "four-language checks"
+      ]
+    },
+    {
+      "id": "CTO-GATE-03",
+      "status": "BACKLOG",
+      "requirements": [
+        "locked multilingual and acoustic evaluation",
+        "citation integrity",
+        "no observed critical religious errors",
+        "qualified reviewers",
+        "privacy tests"
+      ]
+    },
+    {
+      "id": "CTO-GATE-04",
+      "status": "BACKLOG",
+      "requirements": [
+        "scholar credentials",
+        "consultation isolation",
+        "moderation and minor safety",
+        "all lifestyle integrations"
+      ]
+    },
+    {
+      "id": "CTO-GATE-05",
+      "status": "BACKLOG",
+      "requirements": [
+        "sandbox receipt and webhook tests",
+        "integer ledger reconciliation",
+        "quota and cost controls",
+        "admin authorization"
+      ]
+    },
+    {
+      "id": "CTO-GATE-06",
+      "status": "BACKLOG",
+      "requirements": [
+        "all V1 acceptance evidence",
+        "independent security review",
+        "native device and accessibility tests",
+        "backup restore",
+        "closed beta",
+        "legal and religious signoffs",
+        "Founder release authorization"
+      ]
+    }
+  ]
+}
