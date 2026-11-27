@@ -20,6 +20,15 @@ Every criterion below requires executable evidence where applicable, source/lice
 | NP-F14 | Transactional local packs, checksums, durable outbox, retry/replay/conflict and restart tests. |
 | NP-F15 | Complete four-language UI; runtime switching, Arabic/Urdu RTL, reviewed religious translations. |
 | NP-F16 | Sandbox purchase/restore, receipt verification, idempotent webhooks, quota and entitlement enforcement, cancellation/refund. |
-| NP-F17–24 | Later-phase detailed acceptance and independent review required before implementation. |
+| NP-F17 | Review calculation method and dated nisab source; exact minor units and rounding; golden cases at below/equal/above nisab; reject invalid inputs and missing conversion source. |
+| NP-F18 | Display method, locality and authority; golden date boundaries and regional discrepancies; no claim of certainty for unresolved moon sightings. |
+| NP-F19 | Restore practice progress after process restart and offline sync; licensed reference audio; no proficiency claim without validated assessment. |
+| NP-F20 | Guardian consent and controls before child accounts; all child-visible content reviewed; cross-account and unauthorized contact negative tests; export/deletion. |
+| NP-F21 | Expiring/revocable invitation, role permissions, membership removal; no cross-family data exposure in access tests; explicit sharing opt-in. |
+| NP-F22 | Reviewed versioned Hajj/Umrah guidance, downloadable checklists with provenance; clearly distinguish jurisprudential guidance from current travel rules; stale-content warning. |
+| NP-F23 | Verify rights for every published stream; test interrupted playback, timezone, removal and fallback; no fabricated broadcast. |
+| NP-F24 | Evidence-labeled merchant and product catalog; sandbox checkout, minor-unit totals, duplicate payment/order protection, refunds and dispute isolation. |
+
+Year-1 criteria are proposed planning acceptance only. No Year-1 implementation before separate phase authorization and V1 gates.
 
 Proposed religious AI targets: 5,000 multilingual evaluation cases, 100% reference integrity, >=98% scholar correctness, >=99% claim grounding, zero observed critical errors. Tajweed target 10,000 clips/500 speakers, precision >=95%, recall >=80%, rule-specific F1 targets and subgroup checks. Journey 2,000 cases, >=95% relevance, 100% source integrity. All targets unmeasured. No self-approved release.
