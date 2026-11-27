@@ -3,7 +3,7 @@
   "tasks": [
     {
       "id": "NP-CORE-001",
-      "status": "IN_PROGRESS",
+      "status": "VERIFIED",
       "scope": "governance, source provenance, complete registries, acceptance criteria",
       "depends_on": [],
       "group": "A",
@@ -11,7 +11,7 @@
     },
     {
       "id": "NP-CORE-002",
-      "status": "BACKLOG",
+      "status": "IN_PROGRESS",
       "depends_on": [
         "NP-CORE-001"
       ],
