@@ -1,0 +1,7 @@
+# Design system V0.1 — proposed, not rendered or native-tested
+
+Premium quiet Islamic editorial aesthetic. Tokens: emerald #123D32, forest #397A62, muted gold #B89A5B, ivory #F7F5ED, sage #DEE4D8, ink #182820. Gold is decorative by default; do not use it for small text without contrast checks. 4/8/12/16/24/32 spacing; 12/16/24 radius; 48dp touch targets; semantic focus, dynamic type, reduced motion, explicit error labels. Validate licensed Bangla/Arabic/Urdu fonts and Arabic shaping. Dark palette requires independent contrast testing.
+
+Primary tabs Home, Quran, Worship, Nur AI, More. Keep prayer and Quran access free. Home: next prayer (method/timezone), continue reading, daily Ayat, practice, journeys. Quran: Surah/Juz list, reader, translation/Tafsir, audio, downloads. Worship: prayer/Qibla, Dua/Azkar, habit records. Nur AI: evidence-linked chat, consented Tajweed recording, journeys and Imam escalation. More: halal hub, community, shorts, subscription, privacy and language. No fake religious text, statistics, live prayer time or scholar badges in mockups.
+
+Common components: app bar, tab shell, offline banner, async state, content provenance chip, prayer card, reader controls, audio progress, accessible recording consent, evidence panel, private status timeline, plan card. Every screen needs loading, empty, error, offline, permission denial, retry and appropriate back/deep-link state. Use verified religious text only. No native build or visual review performed yet.
