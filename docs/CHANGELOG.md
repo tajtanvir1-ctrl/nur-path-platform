@@ -14,3 +14,6 @@ Added 20 governance baseline files and scoped acceptance. Exact remote registry 
 
 ## V0.6 — Resume / Neon preflight
 Audited V0.5 and failed CI; provisioned isolated Neon development child branch and verified PostgreSQL SQL access, extension availability and empty user/application tables. Fixed CI Ubuntu/Python and Flutter tag discovery. Actual new CI run started; result not yet verified. No schema/auth mutation or new local regression run.
+
+## V0.7 — Flutter CI remediation
+Run 15 failed on startup JSON parsing; Run 17 reached dependency resolution and analyzer, exposing three Flutter 3.50 Material deprecations. Backend clean CI 27/27 pass and all 21 pins match. Pinned Flutter 3.44.0 and added disposable native platform generation, repeat tests and review artifact; Run 19 result pending. No mobile test/build success claimed yet.
