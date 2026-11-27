@@ -11,7 +11,7 @@
     },
     {
       "id": "NP-CORE-002",
-      "status": "IN_PROGRESS",
+      "status": "VERIFIED",
       "depends_on": [
         "NP-CORE-001"
       ],
@@ -21,7 +21,7 @@
     },
     {
       "id": "NP-ARCH-001",
-      "status": "BACKLOG",
+      "status": "IN_PROGRESS",
       "depends_on": [
         "NP-CORE-002"
       ],
