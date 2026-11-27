@@ -2,10 +2,10 @@ name: Foundation verification
 on:
   push:
     branches: ['feat/NP-CORE-001-foundation']
-    paths: ['backend/**', 'apps/mobile/**', 'scripts/**', 'tests/**', 'docs/*-registry.json', 'docs/quality-gates.json', '.github/workflows/foundation-ci.yml']
+    paths: ['backend/**', 'packages/api-contracts/**', 'apps/mobile/**', 'scripts/**', 'tests/**', 'docs/*-registry.json', 'docs/quality-gates.json', '.github/workflows/foundation-ci.yml']
   pull_request:
     branches: [main]
-    paths: ['backend/**', 'apps/mobile/**', 'scripts/**', 'tests/**', 'docs/*-registry.json', 'docs/quality-gates.json', '.github/workflows/foundation-ci.yml']
+    paths: ['backend/**', 'packages/api-contracts/**', 'apps/mobile/**', 'scripts/**', 'tests/**', 'docs/*-registry.json', 'docs/quality-gates.json', '.github/workflows/foundation-ci.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -33,6 +33,7 @@ jobs:
         run: |
           .venv/bin/python scripts/validate_governance.py
           .venv/bin/python scripts/next_task.py
+          .venv/bin/python scripts/export_openapi.py
           .venv/bin/python -m unittest discover -s tests -v
           (cd backend && PYTHONPATH=. ../.venv/bin/python -m pytest -q -p no:cacheprovider tests)
   flutter:
@@ -63,6 +64,7 @@ jobs:
         working-directory: apps/mobile
         run: |
           flutter pub get
+          git diff --exit-code -- pubspec.lock
           flutter analyze
           flutter test
       - name: Generate native platform scaffold in disposable staging
