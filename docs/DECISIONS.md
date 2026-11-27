@@ -10,3 +10,6 @@
 - NP-ADR-007: Founder authorizes phase-wise routine development without repetitive approvals. Hourly scheduled execution is enabled; no assurance of future connector/runtime success. No production release or self-approval.
 
 - NP-ADR-006: Sequential continuation is the default; scheduled attempts are a fallback, not uninterrupted compute. No arbitrary approval pauses. Planner identifies candidates, not authentic approvals. Year-1 remains separately gated.
+
+- NP-ADR-007: Core governance is verified only within its scoped acceptance. Domain documentation matures at mapped gates; no waiver of release criteria. CLAUDE.md retired, AGENTS.md canonical.
+- NP-ADR-008: Observed Linux/Python 3.13 dependency closure and official Flutter 3.50.0 commit ab2912035e160d9cad6306df307576da6128ebdb selected for candidate CI verification, not yet validated as clean environment. CI uses read-only permissions and pinned official actions. Draft PR #1 is verification only, no merge.
