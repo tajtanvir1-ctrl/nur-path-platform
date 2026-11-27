@@ -16,3 +16,5 @@
 
 - NP-ADR-009: Neon Free PostgreSQL for isolated development, Supabase Pro remains intended production target. Retain portable PostgreSQL migrations, provider-neutral auth/storage, least-privilege roles and verified TLS. No Firestore rewrite. See DEVELOPMENT_DATABASE.md.
 - NP-ADR-010: CI remediation pins Ubuntu 24.04 for Python 3.13.5 and uses Flutter 3.50.0 tagged checkout with exact SHA and version assertion. Actual runner result required.
+
+- NP-ADR-011: Pin Flutter 3.44.0 (559ffa3f75e7402d65a8def9c28389a9b2e6fe42) for existing Material API compatibility rather than suppress analyzer deprecations or introduce an unreviewed package. SDK warmed before machine version check. Generate Android/iOS scaffold in disposable CI stage; provisional namespace com.solvegrid is development-only. Review artifact before integrating. Do not cancel active verification merely to publish continuity documents.
