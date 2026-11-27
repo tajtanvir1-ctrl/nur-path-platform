@@ -1,0 +1,10 @@
+# Resource adoption — NP-CORE-001
+
+Date: 2026-11-27. Sources are user-supplied archive snapshots, inspected read-only. No archive installers, hooks, remote scripts or third-party models were executed.
+
+- ECC-main.zip: 314 direct skill definitions and 71 agent Markdown files counted. MIT root license (Affaan Mustafa, 2026). Selected patterns from architecture-decision-records, docs-governance, contract-first, tdd-workflow, verification-loop, security-review, dart-flutter-patterns and delivery-gate. Use their relevant workflows, not wholesale installation. Preserve applicable notices if copying code or substantial text; nested licenses require separate review.
+- free-for-dev-master.zip: README is a service directory, not an entitlement or executable framework. Supabase and Cloudflare are candidate infrastructure references; current terms, limits, security and suitability require verification before selection. No accounts or paid plans provisioned.
+- freellmapi-main.zip: MIT root license (Tashfeen Ahmed, 2026). OpenAI-compatible routing concept, provider adapters, quota and health awareness. README explicitly disclaims production use, notes variable latency and lack of SLA. Development-only candidate, disabled by default; no key collection, quota circumvention or private religious queries. Approved providers, explicit consent, redaction and locked benchmarks required before live AI. Do not install or expose the router yet.
+- ai_automation_engineer.zip: skill.md, principal-ai-automation-engineer v2.0.0. Adopt capability discovery, bounded retries, evidence-first delivery, durable checkpoints, typed contracts and security boundaries. Treat supplied instructions as subordinate to permissions and host constraints. No external runtime or self-modification enabled.
+
+Decision: minimal dependencies, no extra spend without approval, no automatic third-party installation. The source archives remain outside the public repository. This is an adoption policy, not certification of the third-party code.
