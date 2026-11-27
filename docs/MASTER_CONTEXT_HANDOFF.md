@@ -1,7 +1,9 @@
-# Nur Path — Master context handoff V0.1
+# Nur Path — Master context handoff V0.2
 
-2026-11-27 | NP-CORE-001 initial checkpoint | base 5f71713e2a5500bb25a4b768dc5d787a76c9c4aa | branch feat/NP-CORE-001-foundation.
+2026-11-27 | NP-CORE-001 IN_PROGRESS | starting checkpoint 80ada5344829f719c93964c0a2ffe5bde850163b | branch feat/NP-CORE-001-foundation.
 
-Fresh governance start; previous Antigravity completion reports lacked accessible source. Preserve main and history. Initial branch includes governance, feature/task registries and resource adoption policy. All 24 feature entries are backlog; 16 V1 and eight Year 1. No app implementation, native builds, PostgreSQL tests, CI or religious approval claimed. Registry cardinality/unique IDs/V1 count checked in memory during generation. Other acceptance criteria and canonical documents pending. External review gate remains blocked; no independent CTO signoff. Legacy workflow and credential handling require separate security remediation, not execution.
+Current source checkpoint: e477688d89ffbf7869e2d7b28d6db189026ff538. First executable slice: FastAPI /api/v1/health/live and /ready (503 fail-closed until real probes). In-process TDD: four red, then four green; compileall pass. Source and test Git blobs match remote. Direct dependency pins are observed local versions, not a transitive lock. Read docs/evidence-index.json for actual test scope. Immutable handoff: docs/handoffs/2026-11-27-NP-CORE-001-V0.2.md. Prior V0.1 is preserved in Git history.
 
-Next: complete NP-CORE-001 product spec, acceptance criteria, architecture and continuity/evidence records; then NP-CORE-002. Derive exact current commit via remote fetch, not this embedded handoff. Use separate immutable milestone evidence after verification.
+Product and architecture drafts, V1 acceptance criteria, roadmap, memory, tasks, decisions, changelog, evidence index and draft CTO queue are present. All 24 feature entries remain backlog. NP-CORE-001 is not complete; next finish detailed specifications, Year-1 criteria, full task dependency registry and required documentation, then NP-CORE-002. No native Flutter SDK, PostgreSQL integration, CI, live providers, deployment or independent approval verified. FreeLLMAPI controlled evaluation authorized, not activated. No third-party installer executed. Main preserved; legacy Antigravity workflow security review pending. Derive current exact branch SHA from remote; this document cannot contain its own commit hash.
+
+Read AGENTS.md, RESOURCE_ADOPTION.md, TASKS.md, task-registry.json and evidence-index.json before resuming.
