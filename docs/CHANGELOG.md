@@ -29,3 +29,6 @@ Run 44 both jobs PASS. Scoped ARCH-001 accepted; DB-001 started. Initial guarded
 
 ## V0.11 — Database runtime configuration guard
 Added strict external PostgreSQL URL validator and 18 tests. Local DB regression 21 PASS/1 SKIP, backend 6 PASS, OpenAPI matches; tested source hashes match remote. No database connection from app or schema mutation.
+
+## V0.12 — Pending DB verification remediation
+Real PostgreSQL CI 22/22 pass, prior skipped case resolved. First migration applied to isolated Neon dev branch; dedicated read-only role and negative permissions verified. New secure live client probe and nine mocked tests published. External TLS remains blocked on network DNS; no app readiness promotion or next feature task.
