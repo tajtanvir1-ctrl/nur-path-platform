@@ -209,6 +209,50 @@
         "independent review"
       ],
       "limitations": "Observed lock without package hashes; local git DNS unavailable; source via connector."
+    },
+    {
+      "id": "NP-EV-CORE002-CI-NEON-002",
+      "task": "NP-CORE-002",
+      "scope": "audit, CI remediation and real Neon preflight",
+      "previous_baseline": "3e0c079ca40f5d29844481e085fa6591076a859c",
+      "failed_ci": {
+        "run_id": 45983775592,
+        "backend": "Python 3.13.5 unavailable on Ubuntu 26.04",
+        "flutter": "SDK 0.0.0-unknown; dependency resolution failed"
+      },
+      "fix_commit": "5724fe1bfb535a615fa1a022af3eded87eb13572",
+      "workflow_blob": "bda12415d2f342ad83dc27adc7baf9d78ee94081",
+      "verified_official_python_manifest": "3.13.5 linux x64 24.04 exists",
+      "verified_flutter_tag": "3.50.0 -> ab2912035e160d9cad6306df307576da6128ebdb",
+      "ci_retest": {
+        "run_id": 46017012039,
+        "status_at_observation": "in_progress",
+        "result": "NOT_VERIFIED"
+      },
+      "neon": {
+        "plan": "Free",
+        "branch": "nur-path-dev",
+        "parent": "main",
+        "status": "ready",
+        "database": "neondb",
+        "server_version": "18.7",
+        "select_1": "PASS",
+        "vector_available": true,
+        "pgcrypto_available": true,
+        "public_tables": 0,
+        "auth_users": 0,
+        "connector_session_ssl": false
+      },
+      "not_run": [
+        "FastAPI driver connectivity",
+        "External TLS hostname/certificate verification",
+        "Schema migration",
+        "RBAC/RLS tests",
+        "Auth flow",
+        "Native builds",
+        "Independent gate review"
+      ],
+      "limitations": "New branch provisioned; no application schema changes. Local test count from earlier evidence, not rerun in this increment."
     }
   ]
 }
