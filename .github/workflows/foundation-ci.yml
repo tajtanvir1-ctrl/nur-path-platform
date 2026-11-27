@@ -70,6 +70,13 @@ jobs:
           stage="$RUNNER_TEMP/nur_path_native"
           test ! -e "$stage"
           flutter create --platforms=android,ios --org com.solvegrid --project-name nur_path --no-pub "$stage"
+          # The generated template references flutter_lints, absent from the app manifest.
+          # Mirror the original package analyzer configuration exactly.
+          if test -f apps/mobile/analysis_options.yaml; then
+            cp apps/mobile/analysis_options.yaml "$stage/analysis_options.yaml"
+          else
+            printf "{}\n" > "$stage/analysis_options.yaml"
+          fi
           cp apps/mobile/pubspec.yaml "$stage/pubspec.yaml"
           cp apps/mobile/pubspec.lock "$stage/pubspec.lock"
           cp apps/mobile/lib/main.dart "$stage/lib/main.dart"
@@ -79,6 +86,7 @@ jobs:
           test -f "$stage/ios/Runner/Info.plist"
           test -f "$stage/android/app/src/main/AndroidManifest.xml"
           (cd "$stage" && flutter pub get && flutter analyze && flutter test)
+          cmp apps/mobile/pubspec.lock "$stage/pubspec.lock"
       - name: Publish generated scaffold for source review
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
