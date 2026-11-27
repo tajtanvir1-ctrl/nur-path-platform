@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "requests": [
+    {
+      "id": "NP-CRQ-G01-001",
+      "gate": "CTO-GATE-01",
+      "status": "DRAFT",
+      "source_commit": "e477688d89ffbf7869e2d7b28d6db189026ff538",
+      "reason": "Foundation incomplete, no independent approval; health spike only."
+    }
+  ]
+}
