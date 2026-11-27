@@ -26,3 +26,6 @@ Run 25 both jobs PASS; reviewed native scaffold artifact digest and lock, commit
 
 ## V0.10 — Architecture acceptance and database foundation
 Run 44 both jobs PASS. Scoped ARCH-001 accepted; DB-001 started. Initial guarded Alembic migration, identity/preference schema, data dictionary, offline SQL/guard tests and disposable PostgreSQL CI added. Local 3 migration tests PASS, 1 skipped; 6 existing backend tests PASS. Run 64 pending. Neon schema absent on readback; no cloud mutation.
+
+## V0.11 — Database runtime configuration guard
+Added strict external PostgreSQL URL validator and 18 tests. Local DB regression 21 PASS/1 SKIP, backend 6 PASS, OpenAPI matches; tested source hashes match remote. No database connection from app or schema mutation.
