@@ -9,3 +9,5 @@ V0.4: Founder clarified sequential work should continue without artificial pause
 V0.5: scoped CORE-001 verified; CORE-002 in progress. Read docs/DEVELOPMENT_ENVIRONMENT.md, NP-CORE-001_ACCEPTANCE.md, DOCUMENTATION_PLAN.md and evidence-index.json. CI candidate and draft PR #1 exist; verify real results, do not merge or execute legacy agent workflow. Local runtime 27 tests pass; Flutter source generated but tests not run. No live FreeLLMAPI or production credentials.
 
 V0.6: Founder resumed development and approved Neon Free. Read DEVELOPMENT_DATABASE.md; target isolated nur-path-dev child branch only. Actual connector SQL passes, app-driver TLS/auth/schema not verified. CI run 9 pending outcome; do not treat config as passing CI. Next complete CORE-002.
+
+V0.7: Read evidence NP-EV-CORE002-FLUTTER-003. Latest tested backend Run 17 PASS; Flutter 3.50 analyzer incompatible with current imports, not application feature failure. Run 19 pinned 3.44.0; inspect actual outcome and scaffold artifact. Scheduled Nur Path Development enabled confirmed; next run observed 2026-11-27 21:21:33 +06:00, no completed automation run yet. Do not infer continuous compute.
