@@ -5,6 +5,7 @@ on:
     paths: ['backend/**', 'apps/mobile/**', 'scripts/**', 'tests/**', 'docs/*-registry.json', 'docs/quality-gates.json', '.github/workflows/foundation-ci.yml']
   pull_request:
     branches: [main]
+    paths: ['backend/**', 'apps/mobile/**', 'scripts/**', 'tests/**', 'docs/*-registry.json', 'docs/quality-gates.json', '.github/workflows/foundation-ci.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -53,8 +54,10 @@ jobs:
         run: |
           test "$(git -C .toolchain/flutter rev-parse HEAD)" = ab2912035e160d9cad6306df307576da6128ebdb
           test "$(git -C .toolchain/flutter describe --tags --exact-match)" = 3.50.0
+          # Initialize the SDK before capturing machine-readable output.
+          .toolchain/flutter/bin/flutter --version
           .toolchain/flutter/bin/flutter --version --machine > "$RUNNER_TEMP/flutter-version.json"
-          python3 -c 'import json,sys; assert json.load(open(sys.argv[1]))["frameworkVersion"] == "3.50.0"' "$RUNNER_TEMP/flutter-version.json"
+          python3 -c 'import json,sys; v=json.load(open(sys.argv[1])); assert v["frameworkVersion"] == "3.50.0", v["frameworkVersion"]' "$RUNNER_TEMP/flutter-version.json"
           echo "$GITHUB_WORKSPACE/.toolchain/flutter/bin" >> "$GITHUB_PATH"
       - name: Resolve, analyze and test
         working-directory: apps/mobile
